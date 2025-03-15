@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Portfolio</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Bootstrap for responsive design -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">My Data Analytics Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="turtle-games.html">Turtle Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="project2.html">Project 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="project3.html">Project 3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Banner Style -->
+    <header class="hero-section bg-gradient-to-r from-slate-900 via-blue-900 to-cyan-900 py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center text-white">
+                    <h1 class="display-4">Data Analytics Portfolio</h1>
+                    <p class="lead">Transforming data into strategic business insights</p>
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+                        <a href="#projects" class="btn btn-light btn-lg px-4">View Projects</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-4">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Banner Icons -->
+            <div class="d-none d-lg-flex justify-content-center mt-5">
+                <div class="d-flex flex-wrap justify-content-center gap-4">
+                    <i class="fas fa-table fa-3x" style="color: rgb(176, 224, 233);"></i>
+                    <i class="fas fa-database fa-3x" style="color: rgb(176, 224, 233);"></i>
+                    <i class="fas fa-search-dollar fa-3x" style="color: rgb(176, 224, 233);"></i>
+                    <i class="fas fa-brain fa-3x" style="color: rgb(176, 224, 233);"></i>
+                    <i class="fas fa-chart-line fa-3x" style="color: rgb(176, 224, 233);"></i>
+                    <i class="fas fa-chart-pie fa-3x" style="color: rgb(176, 224, 233);"></i>
+                    <i class="fas fa-chart-bar fa-3x" style="color: rgb(176, 224, 233);"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                    <div class="position-relative">
+                        <div class="bg-gradient-to-r from-slate-900 to-cyan-900 rounded-circle p-1">
+                            <!-- Replace with your photo -->
+                            <img src="https://via.placeholder.com/300" alt="Profile Photo" class="rounded-circle img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <h2 class="mb-4">About Me</h2>
+                    <p class="lead mb-4">I'm a data analyst passionate about transforming complex data into actionable insights. With expertise in statistical analysis, data visualization, and business intelligence, I help organizations make data-driven decisions.</p>
+                    <p>My analytical approach combines technical proficiency with business acumen to deliver solutions that drive meaningful outcomes. I specialize in customer analytics, market research, and performance optimization across various industries.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#contact" class="btn btn-outline-primary">Get in Touch</a>
+                        <a href="#" class="btn btn-outline-secondary">Download Resume</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="py-5 bg-gradient-to-r from-slate-100 to-blue-50">
+        <div class="container">
+            <h2 class="text-center mb-5">Featured Projects</h2>
+            
+            <!-- Project Cards in a More Sophisticated Layout -->
+            <div class="row g-4">
+                <!-- Turtle Games Project -->
+                <div class="col-lg-12 mb-4">
+                    <div class="card border-0 shadow-lg h-100 overflow-hidden">
+                        <div class="row g-0">
+                            <div class="col-md-4 bg-gradient-to-r from-slate-900 to-blue-900 text-white d-flex flex-column justify-content-center p-4">
+                                <h3 class="card-title mb-3">Turtle Games: Customer Behavior Analysis</h3>
+                                <div class="mb-3">
+                                    <span class="badge bg-light text-dark me-2 mb-1">Python</span>
+                                    <span class="badge bg-light text-dark me-2 mb-1">R</span>
+                                    <span class="badge bg-light text-dark me-2 mb-1">Machine Learning</span>
+                                </div>
+                                <p class="card-text opacity-75 mb-4">Comprehensive analysis and segmentation of customer data to improve sales performance.</p>
+                                <div class="mt-auto">
+                                    <a href="turtle-games.html" class="btn btn-light">View Case Study <i class="fas fa-arrow-right ms-2"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-auto">
+                                            <span class="text-primary fw-bold">6 Weeks</span>
+                                            <span class="mx-2">|</span>
+                                            <span class="fw-bold text-success">97% (High Distinction)</span>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <h5 class="card-title text-dark mb-3">Key Outcomes:</h5>
+                                    <ul class="mb-4">
+                                        <li>Implemented regression modeling achieving 84% accuracy in loyalty prediction</li>
+                                        <li>Segmented customers into 5 distinct behavior groups using K-means clustering</li>
+                                        <li>Analyzed 2,000+ customer reviews using NLP sentiment analysis techniques</li>
+                                        <li>Developed strategic recommendations increasing targeted marketing effectiveness</li>
+                                    </ul>
+                                    <div class="d-flex align-items-center">
+                                        <div class="d-flex">
+                                            <span class="badge rounded-pill bg-primary-subtle text-primary me-2">
+                                                <i class="fas fa-users me-1"></i> Customer Analytics
+                                            </span>
+                                            <span class="badge rounded-pill bg-success-subtle text-success me-2">
+                                                <i class="fas fa-chart-line me-1"></i> Predictive Modeling
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card border-0 shadow-lg h-100">
+                        <div class="bg-gradient-to-r from-purple-900 to-indigo-900 text-white p-4">
+                            <h3 class="card-title">Project 2</h3>
+                            <div class="mb-3 mt-2">
+                                <span class="badge bg-light text-dark me-2">Power BI</span>
+                                <span class="badge bg-light text-dark me-2">SQL</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <p class="card-text">Brief description of your second project. Highlight key technologies and findings.</p>
+                            <div class="d-flex mt-3">
+                                <span class="badge rounded-pill bg-primary-subtle text-primary me-2">
+                                    <i class="fas fa-database me-1"></i> Data Modeling
+                                </span>
+                                <span class="badge rounded-pill bg-warning-subtle text-warning">
+                                    <i class="fas fa-chart-pie me-1"></i> Dashboard Design
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 p-4 pt-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="project2.html" class="btn btn-sm btn-outline-primary">View Case Study</a>
+                                <span class="text-muted">Duration: 4 Weeks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card border-0 shadow-lg h-100">
+                        <div class="bg-gradient-to-r from-cyan-900 to-teal-900 text-white p-4">
+                            <h3 class="card-title">Project 3</h3>
+                            <div class="mb-3 mt-2">
+                                <span class="badge bg-light text-dark me-2">Tableau</span>
+                                <span class="badge bg-light text-dark me-2">Excel</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <p class="card-text">Brief description of your third project. Highlight key technologies and findings.</p>
+                            <div class="d-flex mt-3">
+                                <span class="badge rounded-pill bg-info-subtle text-info me-2">
+                                    <i class="fas fa-search me-1"></i> Market Analysis
+                                </span>
+                                <span class="badge rounded-pill bg-success-subtle text-success">
+                                    <i class="fas fa-tasks me-1"></i> Process Optimization
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 p-4 pt-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="project3.html" class="btn btn-sm btn-outline-primary">View Case Study</a>
+                                <span class="text-muted">Duration: 5 Weeks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-5">Technical Proficiencies</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="bg-primary bg-opacity-10 p-2 rounded me-3">
+                                    <i class="fas fa-database text-primary"></i>
+                                </span>
+                                <h5 class="card-title mb-0">Data Analysis</h5>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Statistical Analysis</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Regression Modeling</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>A/B Testing</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Customer Segmentation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="bg-info bg-opacity-10 p-2 rounded me-3">
+                                    <i class="fas fa-chart-pie text-info"></i>
+                                </span>
+                                <h5 class="card-title mb-0">Visualization</h5>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Power BI</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Tableau</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Excel Advanced</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Interactive Dashboards</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="bg-success bg-opacity-10 p-2 rounded me-3">
+                                    <i class="fas fa-code text-success"></i>
+                                </span>
+                                <h5 class="card-title mb-0">Programming</h5>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>SQL</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Python (Pandas, NumPy)</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>R (tidyverse, ggplot2)</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Google Analytics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="bg-warning bg-opacity-10 p-2 rounded me-3">
+                                    <i class="fas fa-lightbulb text-warning"></i>
+                                </span>
+                                <h5 class="card-title mb-0">Domain Expertise</h5>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Customer Analytics</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Financial Analysis</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Marketing Analytics</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Data Storytelling</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Get In Touch</h2>
+            <div class="row">
+                <div class="col-lg-6 mx-auto text-center">
+                    <p class="lead mb-4">Interested in collaborating or have questions about my projects?</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://github.com/your-username" class="mx-2 text-dark" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                        <a href="https://linkedin.com/in/your-profile" class="mx-2 text-dark" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="mailto:your-email@example.com" class="mx-2 text-dark"><i class="fas fa-envelope fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-slate-900 via-blue-900 to-cyan-900 text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <h5 class="mb-3">Data Analytics Portfolio</h5>
+                    <p class="mb-1">Transforming data into actionable insights</p>
+                    <p class="small opacity-75">© 2025 Your Name | All Rights Reserved</p>
+                </div>
+                <div class="col-lg-6 text-center text-lg-end">
+                    <div class="mb-3">
+                        <a href="https://github.com/your-username" class="text-white mx-2" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                        <a href="https://linkedin.com/in/your-profile" class="text-white mx-2" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="https://tableau.com/your-profile" class="text-white mx-2" target="_blank"><i class="fab fa-tableau fa-2x"></i></a>
+                        <a href="mailto:your-email@example.com" class="text-white mx-2"><i class="fas fa-envelope fa-2x"></i></a>
+                    </div>
+                    <p class="small opacity-75">Made with <i class="fas fa-heart text-danger"></i> using GitHub Pages</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center active">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
