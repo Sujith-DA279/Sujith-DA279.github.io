@@ -181,54 +181,67 @@
 
 <body>
   <!-- Navigation from Homepage -->
-  <header class="sticky-top">
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container">
-        <!-- Mobile Toggle Button -->
-        <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!-- Navigation Links (left side) -->
-        <div class="collapse navbar-collapse order-1 order-lg-0" id="navbarNav">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html#about">About Me</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.html#skills">Tech Skills</a>
-            </li>
-          </ul>
-        </div>
-        
-        <!-- Centered Brand/Logo -->
-        <a class="navbar-brand mx-auto order-0 order-lg-1" href="index.html">Sujith Kumaar</a>
-        
-        <!-- Navigation Links (right side) -->
-        <div class="collapse navbar-collapse order-2" id="navbarNav2">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle active" href="index.html#projects" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
-              <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
-                <li><a class="dropdown-item" href="index.html#projects">All Projects</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="turtle_games_project.html">Turtle Games</a></li>
-                <li><a class="dropdown-item active" href="nhs_project.html">NHS UK</a></li>
-                <li><a class="dropdown-item" href="2Market_project.html">2Market</a></li>
-                <!--<li><a class="dropdown-item" href="vantage_project.html">Vantage Data</a></li>-->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container">
+            <!-- Centered Brand/Logo for mobile -->
+            <a class="navbar-brand d-lg-none mx-auto" href="index.html">Sujith Kumaar</a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- All Navigation Links in a Single Collapsible Container -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+              <!-- Left side links -->
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html#about">About Me</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html#skills">Tech Skills</a>
+                </li>
               </ul>
-            </li>
-          </ul>
-          <div class="ms-3 d-none d-lg-block">
-            <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-2" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Sujith-DA279" class="text-white me-2" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-2" target="_blank"><i class="fas fa-chart-line"></i></a>
-            <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-2"><i class="fas fa-envelope"></i></a>
+              
+              <!-- Centered Brand/Logo for desktop -->
+              <a class="navbar-brand d-none d-lg-block mx-auto" href="index.html">Sujith Kumaar</a>
+              
+              <!-- Right side links -->
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="index.html#projects" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+                  <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+                    <li><a class="dropdown-item" href="index.html#projects">All Projects</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="turtle-games.html">Turtle Games</a></li>
+                    <li><a class="dropdown-item" href="nhs_project.html">NHS UK</a></li>
+                    <li><a class="dropdown-item" href="2Market_project.html">2Market</a></li>
+                    <li><a class="dropdown-item" href="vantage_project.html">Vantage Data</a></li>
+                  </ul>
+                </li>
+                <!-- Social icons for mobile -->
+                <li class="nav-item d-lg-none">
+                  <div class="d-flex mt-2">
+                    <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-3" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Sujith-DA279" class="text-white me-3" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-3" target="_blank"><i class="fas fa-chart-line"></i></a>
+                    <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-3"><i class="fas fa-envelope"></i></a>
+                  </div>
+                </li>
+              </ul>
+              
+              <!-- Social icons for desktop -->
+              <div class="ms-3 d-none d-lg-block">
+                <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Sujith-DA279" class="text-white me-2" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-2" target="_blank"><i class="fas fa-chart-line"></i></a>
+                <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-2"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </nav>
-  </header>
+        </nav>
+    </header>
 
   <!-- Project Content Section -->
   <div class="project-header">
