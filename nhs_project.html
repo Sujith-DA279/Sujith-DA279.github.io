@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NHS UK : Appointments Data Analysis</title>
+  <!-- Bootstrap for responsive design -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Core Styling Variables */
+    :root {
+      --primary-gradient: linear-gradient(to right, #0f172a, #1e3a8a, #164e63);
+      --highlight-blue: #1e3a8a;
+      --light-gray: #f8f9fa;
+      --divider-color: #e9ecef;
+    }
+    
+    /* General Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+    }
+
+    /* Navigation Styles */
+    .navbar {
+      background: var(--primary-gradient);
+      padding: 1rem 0;
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      border-radius: 50%;
+      bottom: 30px;
+      right: 30px;
+      width: 40px;
+      height: 40px;
+      background-color: #0366d6;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      z-index: 99;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    
+    .back-to-top:hover {
+      opacity: 1;
+      color: white;
+    }
+    
+    /* Project Content Styles */
+    .container-lg {
+      max-width: 100%;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--highlight-blue);
+    }
+
+    h3, h4 {
+      margin-top: 2rem;  /* Adds space above headings */
+      margin-bottom: 1rem;  /* Adds space below headings */
+    }
+
+    h5 {
+      margin-top: 1.5rem;  /* Slightly less space for subheadings */
+    }
+
+    hr {
+      margin: 2.5rem 0;  /* Increased vertical margin around horizontal rules */
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+    }
+    
+    img {
+      max-width: 75%;
+      height: auto;
+    }
+    
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    
+    blockquote {
+      border-left: 4px solid var(--highlight-blue);
+      padding-left: 16px;
+      color: #555;
+      background-color: #e1eafa;
+      margin: 20px 0;
+    }
+    
+    a {
+      color: var(--highlight-blue);
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    .section-peek-line {
+      width: 50px;
+      height: 4px;
+      background: var(--primary-gradient);
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2.5rem;
+      font-weight: 600;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 60px;
+      height: 3px;
+      background: var(--primary-gradient);
+    }
+    
+    /* Project-specific styles */
+    .project-header {
+      background-color: var(--light-gray);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+    
+    .project-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .project-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }    
+      /* Footer Styles */
+      .footer {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 3rem 0;
+    }
+
+    .footer h5, .footer p {
+      color: white !important;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Navigation from Homepage -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Navigation Links (left side) -->
+        <div class="collapse navbar-collapse order-1 order-lg-0" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="homepage.html#about">About Me</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="homepage.html#skills">Tech Skills</a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Centered Brand/Logo -->
+        <a class="navbar-brand mx-auto order-0 order-lg-1" href="homepage.html">Sujith Kumaar</a>
+        
+        <!-- Navigation Links (right side) -->
+        <div class="collapse navbar-collapse order-2" id="navbarNav2">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="homepage.html#projects" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+              <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+                <li><a class="dropdown-item" href="homepage.html#projects">All Projects</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="turtle_games_project.html">Turtle Games</a></li>
+                <li><a class="dropdown-item active" href="nhs_project.html">NHS UK</a></li>
+                <li><a class="dropdown-item" href="2Market_project.html">2Market</a></li>
+                <!--<li><a class="dropdown-item" href="vantage_project.html">Vantage Data</a></li>-->
+              </ul>
+            </li>
+          </ul>
+          <div class="ms-3 d-none d-lg-block">
+            <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Sujith-DA279" class="text-white me-2" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-2" target="_blank"><i class="fas fa-chart-line"></i></a>
+            <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-2"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Project Content Section -->
+  <div class="project-header">
+    <div class="container">
+      <h1 class="project-title">NHS UK : Appointments Data Analysis</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="homepage.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="homepage.html#projects">Projects</a></li>
+          <li class="breadcrumb-item active" aria-current="page">NHS UK</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container-lg p-responsive mt-2 mb-5">
+    <div class="project-content">
+     <article class="markdown-body">
+      <h4>📋 Project Brief</h4>
+      <p>
+        I conducted an in-depth analysis of NHS UK appointment data (2020-2022) to identify service utilization patterns, assess resource capacity, and investigate missed appointments, which incur significant costs.
+      </p>
+
+      <h4>✅ Objectives</h4>
+      <p>
+        The analysis supported key business objectives:
+      </p>
+      <ul>
+        <li>Understanding service utilization trends and patterns</li>
+        <li>Assessing staff and capacity adequacy across regions</li>
+        <li>Reducing missed appointments through targeted interventions</li>
+        <li>Evaluating the value of external data sources for decision-making</li>
+      </ul>
+
+      <h4>🎯 Conclusion </h4>
+      <p>
+        The analysis revealed significant opportunities to improve NHS appointment utilization and reduce missed appointments. Weekdays show consistent over-utilization (73% of days exceeding capacity), while weekends are under-utilized.
+      </p>
+      <ul>
+      <b>Key Recommendations:</b>
+        <li>Increase same-day and next-day appointments to reduce missed rates</li>
+        <li>Expand telephone and video consultations to optimize resources</li>
+        <li>Improve weekend utilization to relieve weekday overuse</li>
+        <li>Implement region-specific interventions for high-miss areas</li>
+        <li>Use automated reminders for appointments with longer booking windows</li>
+     </ul>
+      <hr>
+
+      <h4>Project Overview:</h4>
+      <div>
+        <table>
+          <tr>
+            <th>⏱️ Duration</th>
+            <th>🏆 Grade</th>
+            <th>🛠️ Tools</th>
+            <th>📊 Datasets</th>
+          </tr>
+          <tr>
+            <td><b>6 Weeks</b></td>
+            <td><b>93% (High Distinction)</b></td>
+            <td>
+              <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+              <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
+              <img src="https://img.shields.io/badge/Seaborn-4EABE5?style=for-the-badge&logo=python&logoColor=white" alt="Seaborn">
+            </td>
+            <td>
+              <b>30 months</b> of appointment data<br>
+              <b>742.8M</b> appointments analyzed
+            </td>
+          </tr>
+        </table>
+
+        <div class="mt-5 d-flex align-items-center">
+          <span class="me-3"><b>👨‍💻 Project Code:</b></span>
+          <a href="https://github.com/Sujith-DA279/NHS_Utilisation_Analysis" target="_blank" class="btn btn-sm btn-primary">
+            <i class="fab fa-github me-1"></i>View on GitHub
+          </a>
+        </div>        
+      </div>
+
+      <hr>
+
+      <h4>Analytical Approach:</h4>
+      <h5>1. Data Preparation & Cleaning</h5>
+      <table>
+        <tr>
+          <th>Process</th>
+          <th>Highlights</th>
+        </tr>
+        <tr>
+          <td><b>Data Import</b></td>
+          <td>Loaded multiple NHS datasets with different time ranges<br>Consolidated appointment data across regional, national, and duration-specific sources</td>
+        </tr>
+        <tr>
+          <td><b>Data Cleaning</b></td>
+          <td>
+            <ul>
+              <li>Verified data consistency across the datasets</li>
+              <li>Validated appointment count alignments</li>
+              <li>Handled duplicate records</li>
+              <li>Standardized datetime fields for analysis</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Data Enhancement</b></td>
+          <td>
+            <ul>
+              <li>Mapped location codes to NHS organizational structure</li>
+              <li>Added geographical context by linking regions, ICBs, and sub-ICBs</li>
+              <li>Created derived fields for time and service settings</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+
+      <h4>2. Exploratory Data Analysis</h4>
+      <table>
+        <tr>
+          <th>Process</th>
+          <th>Highlights</th>
+        </tr>
+        <tr>
+          <td><b>Location Analysis</b></td>
+          <td>Analyzed 7 NHS regions with 42 ICBs and 106 sub-ICBs<br>Identified regional disparities in appointment volumes and missed rates</td>
+        </tr>
+        <tr>
+          <td><b>Categorical Analysis</b></td>
+          <td>
+            <ul>
+              <li>Created custom functions to analyze multiple appointment categories</li>
+              <li>Examined service settings, context types, national categories, and appointment modes</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Temporal Analysis</b></td>
+          <td>Assessed monthly, seasonal, and COVID-related trends<br>Identified impact of lockdown periods on appointment volumes</td>
+        </tr>
+      </table>
+
+      <h4>3. Advanced Analysis</h4>
+      <table>
+        <tr>
+          <th>Component</th>
+          <th>Highlights</th>
+        </tr>
+        <tr>
+          <td><b>Missed Appointments</b></td>
+          <td>Analyzed 30.9M missed appointments (4.16% of total)<br>Identified key correlations with appointment modes and booking intervals<br>Quantified business impact of missed appointments</td>
+        </tr>
+        <tr>
+          <td><b>Capacity Utilization</b></td>
+          <td>Evaluated daily capacity against the 1.2M appointment benchmark<br>Identified weekday vs. weekend utilization disparities<br>Assessed post-COVID capacity patterns</td>
+        </tr>
+        <tr>
+          <td><b>Multivariate Analysis</b></td>
+          <td>Combined mode, timing, and regional factors to identify missed appointment patterns<br>Created region-specific insights on appointment behaviors</td>
+        </tr>
+      </table>
+
+      <hr>
+
+      <h4>🗝️ Key Insights:</h4>
+      <h5>Appointment Distribution</h5>
+      <ul>
+        <li>Identified General Practice as the dominant service setting (91% of appointments)</li>
+        <li>Discovered Face-to-Face (60%) and Telephone (28%) as the primary appointment modes</li>
+        <li>Face-to-Face appointments decreased while Telephone consultations doubled during COVID</li>
+      </ul>
+      <blockquote>
+        <p><b>Value Discovery:</b> 87.7% of all appointments have booking windows of 0-14 days, with same-day appointments showing the lowest missed rates across all modes</p>
+      </blockquote>
+
+      <div align="center">
+        <img src="https://github.com/user-attachments/assets/bc91e35a-dba6-4859-9377-6436386a4fa0" alt="NHS Appointment Distribution">
+        <p><em>Distribution showing significant variations in appointment volumes and types</em></p>
+      </div>
+
+      <h4>Capacity Utilization</h4>
+      <ul>
+        <li>Quantified weekday over-utilization with 73% of weekdays exceeding capacity</li>
+        <li>Identified Tuesday (107.3%) and Monday (103.6%) as peak utilization days</li>
+        <li>Measured weekend under-utilization with Saturday (9.9%) and Sunday (1.1%) showing minimal use</li>
+      </ul>
+      <blockquote>
+        <p><b>Value Discovery:</b> Weekend appointment expansion could significantly reduce weekday pressure, particularly following post-lockdown peak periods</p>
+      </blockquote>
+
+      <div align="center">
+        <img src="https://github.com/user-attachments/assets/52ae05a0-7217-406a-97b2-aa41ae8f2646" alt="NHS Capacity Utilization">
+        <p><em>Utilization trends showing weekday overuse and weekend underutilization</em></p>
+      </div>  
+
+      <h4>Missed Appointments</h4>
+      <ul>
+        <li>Quantified Missed appointments as 4.16% of all appointments over 30 months of analysis.</li>
+        <li>Identified Face-to-Face appointments accounting for 78% of all missed appointments</li>
+        <li>Discovered strong correlation between booking interval and missed rates</li>
+        <li>Longer intervals showed significantly higher missed rates (9.8% for 28+ days vs. 2.0% for same-day)</li>
+      </ul>
+      <blockquote>
+        <p><b>Value Discovery:</b> Telephone appointments consistently show lower missed rates (1.4-3.3%) across all booking intervals</p>
+      </blockquote>
+
+      <div align="center">
+        <img src="https://github.com/user-attachments/assets/992b2c80-df7b-49b1-b0ae-d9a37303f43a" alt="Missed Appointments Analysis">
+        <p><em>Analysis of missed appointments by mode, booking interval, and region</em></p>
+      </div>
+
+      <hr>
+
+      <h4>📊 Recommendations to NHS:</h4>
+      <p>
+        Based on the comprehensive data analysis, the following strategic recommendations were presented to enhance NHS appointment management:
+      </p>  
+      <h4>Operational Recommendations</h4>
+      <ul>
+        <li>Shorten booking intervals by increasing same-day and next-day appointments to reduce missed rates</li>
+        <li>Expand remote consultations through telephone and video to capitalize on their lower missed rates</li>
+        <li>Implement weekend utilization improvements to balance weekday over-utilization</li>
+        <li>Deploy automated appointment reminders for bookings with intervals greater than 8 days</li>
+        <li>Develop region-specific interventions targeting the unique patterns in high-miss areas</li>
+      </ul>
+      <h4>Strategic Recommendations</h4>
+      <ul>
+        <li>Redistribute staff resources to match peak demand periods and underutilized capacity windows</li>
+        <li>Balance face-to-face and telephone appointment availability based on regional attendance patterns</li>
+        <li>Consider short-term staff augmentation to address post-COVID demand surges</li>
+        <li>Improve data collection methods to enable more granular analysis in the future</li>
+      </ul>
+      <h4>Technical Recommendations</h4>
+      <ul>
+        <li>Create a unified data model linking appointment-level data across all systems</li>
+        <li>Incorporate population metrics and healthcare provider data for more comprehensive analysis</li>
+        <li>Extend data collection timeframes to better identify seasonal patterns</li>
+        <li>Develop advanced predictive models once post-COVID normalization periods provide more stable data</li>
+      </ul>
+     </article>
+    </div>
+  </div>
+
+  <!-- Footer from Homepage -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6 text-center text-lg-start">
+          <h5 class="mb-3">Sujith Kumaar</h5>
+          <p class="mb-1">Analysing Data | Igniting Decisions</p>
+          <p class="small opacity-75">© 2025 Sujith Kumaar | All Rights Reserved</p>
+        </div>
+        <div class="col-lg-6 text-center text-lg-end">
+          <div class="mb-3">
+            <a href="https://github.com/Sujith-DA279" class="text-white mx-2" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white mx-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white mx-2" target="_blank"><i class="fas fa-chart-line"></i></a>
+            <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white mx-2"><i class="fas fa-envelope"></i></a>
+          </div>
+          <p class="small opacity-75">Made with <i class="fas fa-heart text-danger"></i> using GitHub Pages</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

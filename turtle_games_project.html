@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turtle Games : Predicting Future Outcomes</title>
+  <!-- Bootstrap for responsive design -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Core Styling Variables */
+    :root {
+      --primary-gradient: linear-gradient(to right, #0f172a, #1e3a8a, #164e63);
+      --highlight-blue: #1e3a8a;
+      --light-gray: #f8f9fa;
+      --divider-color: #e9ecef;
+    }
+    
+    /* General Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+    }
+
+    /* Navigation Styles */
+    .navbar {
+      background: var(--primary-gradient);
+      padding: 1rem 0;
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      border-radius: 50%;
+      bottom: 30px;
+      right: 30px;
+      width: 40px;
+      height: 40px;
+      background-color: #0366d6;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      z-index: 99;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    
+    .back-to-top:hover {
+      opacity: 1;
+      color: white;
+    }
+    
+    /* Project Content Styles */
+    .container-lg {
+      max-width: 100%;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--highlight-blue);
+    }
+
+    h3, h4 {
+      margin-top: 2rem;  /* Adds space above headings */
+      margin-bottom: 1rem;  /* Adds space below headings */
+    }
+
+    h5 {
+      margin-top: 1.5rem;  /* Slightly less space for subheadings */
+    }
+
+    hr {
+      margin: 2.5rem 0;  /* Increased vertical margin around horizontal rules */
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+    }
+    
+    img {
+      max-width: 75%;
+      height: auto;
+    }
+    
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    
+    blockquote {
+      border-left: 4px solid var(--highlight-blue);
+      padding-left: 16px;
+      color: #555;
+      background-color: #e1eafa;
+      margin: 20px 0;
+    }
+    
+    a {
+      color: var(--highlight-blue);
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    .section-peek-line {
+      width: 50px;
+      height: 4px;
+      background: var(--primary-gradient);
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2.5rem;
+      font-weight: 600;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 60px;
+      height: 3px;
+      background: var(--primary-gradient);
+    }
+    
+    /* Project-specific styles */
+    .project-header {
+      background-color: var(--light-gray);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+    
+    .project-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .project-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }    
+      /* Footer Styles */
+      .footer {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 3rem 0;
+    }
+
+    .footer h5, .footer p {
+      color: white !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation from Homepage -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Navigation Links (left side) -->
+        <div class="collapse navbar-collapse order-1 order-lg-0" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="homepage.html#about">About Me</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="homepage.html#skills">Tech Skills</a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Centered Brand/Logo -->
+        <a class="navbar-brand mx-auto order-0 order-lg-1" href="homepage.html">Sujith Kumaar</a>
+        
+        <!-- Navigation Links (right side) -->
+        <div class="collapse navbar-collapse order-2" id="navbarNav2">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="homepage.html#projects" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+              <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+                <li><a class="dropdown-item" href="homepage.html#projects">All Projects</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item active" href="turtle-games.html">Turtle Games</a></li>
+                <li><a class="dropdown-item" href="nhs_project.html">NHS UK</a></li>
+                <li><a class="dropdown-item" href="2Market_project.html">2Market</a></li>
+                <!--<li><a class="dropdown-item" href="vantage_project.html">Vantage Data</a></li>-->
+              </ul>
+            </li>
+          </ul>
+          <div class="ms-3 d-none d-lg-block">
+            <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Sujith-DA279" class="text-white me-2" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-2" target="_blank"><i class="fas fa-chart-line"></i></a>
+            <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-2"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Project Content Section -->
+  <div class="project-header">
+    <div class="container">
+      <h1 class="project-title">Turtle Games : Predicting Future Outcomes</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="homepage.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="homepage.html#projects">Projects</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Turtle Games</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container-lg p-responsive mt-2 mb-5">
+    <div class="project-content">
+      <article class="markdown-body">
+        <h4>📋 Project Brief</h4>
+        <p>
+          I conducted an in-depth analysis of Turtle Games customer data to improve overall sales performance through enhanced understanding of customer behavior and loyalty patterns. Using Python, R, and advanced statistical methods, I delivered actionable insights that can drive enhanced marketing effectiveness, customer retention, and targeted product offerings to increase revenue.
+        </p>
+
+        <h4>✅ Objectives</h4>
+        <p>
+          The analysis addressed key business needs of:
+        </p>
+        <ul>
+          <li>Understanding customer behavior and purchasing patterns.</li>
+          <li>Identifying key factors influencing customer loyalty.</li>
+          <li>Developing predictive models to forecast future sales.</li>
+        </ul>
+        <p>
+          They were addressed through multiple advanced data techniques: 
+        </p>
+        <ul>
+          <li><b>Customer Loyalty Drivers Analysis</b>: Applied <b>linear regression</b> modeling to identify and quantify key factors influencing customer loyalty</li>
+          <li><b>Customer Segmentation</b>: Implemented <b>decision tree</b> and <b>K-means clustering</b> to develop behavior-driven customer personas</li>
+          <li><b>Sentiment Analysis</b>: Utilized <b>NLP techniques (VADER, TextBlob)</b> on 2,000 customer reviews to assess product satisfaction</li>
+          <li><b>Integrated Recommendation System</b>: Combined quantitative insights with sentiment analysis to create segment-specific strategies</li>
+        </ul>
+
+        <h4>🎯 Key Findings & Business Impact</h4>
+        <p>
+          The analysis revealed significant opportunities for enhanced customer engagement through strategic loyalty program redesign and targeted marketing. Spending score and remuneration emerged as <i>primary loyalty drivers</i> (<b>correlation scores of 0.67 and 0.62</b>), while <i>five distinct customer segments</i> were identified with significantly different loyalty behaviors (ranging from 275 to 3988 average loyalty points).
+        </p>
+        <ul>
+        <b>Data-Driven Recommendations:</b>
+          <li>Implement a tiered loyalty program with differentiated benefits based on five identified customer segments</li>
+          <li>Deploy predictive loyalty model to anticipate customer behavior and tailor marketing approaches</li>
+          <li>Enhance product quality and gameplay mechanics based on sentiment analysis findings</li>
+          <li>Develop targeted strategies for "Occasional Affluents" with high income but inconsistent spending patterns</li>
+        </ul>
+        <hr>
+
+        <h4>Project Overview:</h4>
+        <div>
+          <table>
+            <tr>
+              <th>⏱️ Duration</th>
+              <th>🏆 Grade</th>
+              <th>🛠️ Technologies</th>
+              <th>🧠 ML Algorithms</th>
+              <th>📊 Datasets</th>
+            </tr>
+            <tr>
+              <td><b>6 Weeks</b></td>
+              <td><b>97% (High Distinction)</b></td>
+              <td>
+                <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+                <img src="https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white" alt="R">
+                <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
+                <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="scikit-learn">
+                <img src="https://img.shields.io/badge/NLTK-00B7FF?style=for-the-badge&logo=python&logoColor=white" alt="NLTK">
+                <img src="https://img.shields.io/badge/statsmodels-4169E1?style=for-the-badge&logo=python&logoColor=white" alt="statsmodels">
+              </td>
+              <td>
+                <img src="https://img.shields.io/badge/Linear_Regression-005571?style=for-the-badge" alt="Linear Regression">
+                <img src="https://img.shields.io/badge/WLS_Regression-005571?style=for-the-badge" alt="WLS Regression">
+                <img src="https://img.shields.io/badge/Decision_Trees-005571?style=for-the-badge" alt="Decision Trees">
+                <img src="https://img.shields.io/badge/K--means_Clustering-005571?style=for-the-badge" alt="K-means Clustering">
+                <img src="https://img.shields.io/badge/VADER_Sentiment-005571?style=for-the-badge" alt="VADER Sentiment">
+                <img src="https://img.shields.io/badge/GridSearchCV-005571?style=for-the-badge" alt="GridSearchCV">
+              </td>
+              <td>
+                <b>2,000</b> customer reviews<br>
+              </td>
+            </tr>
+          </table>
+          
+          <div class="mt-5 d-flex align-items-center">
+            <span class="me-3"><b>👨‍💻 Project Code:</b></span>
+            <a href="https://github.com/Sujith-DA279/TurtleGames_Prediction_Analysis" target="_blank" class="btn btn-sm btn-primary">
+              <i class="fab fa-github me-1"></i>View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <hr>
+        <h4>Analytical Approach:</h4>
+        <h5>1. Data Preparation & Engineering</h5>
+        <table>
+          <tr>
+            <th>Process</th>
+            <th>Highlights & Technical Implementation</th>
+          </tr>
+          <tr>
+            <td><b>Data Import & Validation</b></td>
+            <td>• Loaded customer reviews dataset with purchase and demographic data<br>• Performed dataset validation with <code>.info()</code>, <code>.describe()</code>, <code>.shape()</code> functions<br>• Confirmed no missing values in the dataset with <code>.isna().sum()</code></td>
+          </tr>
+          <tr>
+            <td><b>Data Cleaning</b></td>
+            <td>• Identified and <b>retained potential outliers</b> in loyalty points to preserve dataset integrity<br>• Flagged 2.5% of <b>age</b> data showing <b>potential misreporting</b><br>• Applied exploratory visualizations to assess data distributions and relationships</td>
+          </tr>
+          <tr>
+            <td><b>Feature Analysis</b></td>
+            <td>• Analyzed correlation matrix between quantitative variables<br>• <b>Visualized</b> relationships between <b>loyalty points and potential predictor</b> variables<br>• Assessed categorical variables (gender, education) for their impact on loyalty points</td>
+          </tr>
+          <tr>
+            <td><b>Feature Engineering</b></td>
+            <td>• Applied <b>log and square root transformations</b> to address <i>skewness</i> in loyalty points<br>• <b>One-hot encoded</b> categorical features for decision tree analysis<br>• Created normalized features for clustering algorithms</td>
+          </tr>
+        </table>
+
+        <h4>2. Linear Regression Analysis</h4>
+        <table>
+          <tr>
+            <th>Process</th>
+            <th>Technical Implementation</th>
+          </tr>
+          <tr>
+            <td><b>Simple Linear Regression</b></td>
+            <td>• Applied <b>OLS</b> function in statsmodel to analyze relationships between loyalty points and individual predictors<br>• Developed multiple iterations of models to identify optimal variable combinations<br>• Implemented model validation through training/test split</td>
+          </tr>
+          <tr>
+            <td><b>Multiple Linear Regression</b></td>
+            <td>• Created <b>comprehensive models</b> incorporating spending score, remuneration and age<br>• Applied statistical tests for <b>normality (Shapiro-Wilk) and heteroscedasticity (Breusch-Pagan)</b><br>• Evaluated model performance using adjusted R-squared (84.0%)</td>
+          </tr>
+          <tr>
+            <td><b>Model Optimization</b></td>
+            <td>• Tested variable transformations (log, square root) to improve model performance<br>• Implemented <b>Weighted Least Squares regression</b> to address heteroscedasticity<br>• Validated final model with VIF assessment to confirm absence of multicollinearity</td>
+          </tr>
+        </table>
+
+        <div align="center">
+          <img src="assets/img/ols-loyalty-points.jpg" alt="OLS_LoyaltyPoints">
+          <p><em>Simple and MultiLinear Regressions plotted</em></p>
+        </div>
+
+        <h4>3. Customer Segmentation Analysis</h4>
+        <table>
+          <tr>
+            <th>Component</th>
+            <th>Technical Implementation</th>
+          </tr>
+          <tr>
+            <td><b>Decision Tree Analysis</b></td>
+            <td>• Applied <code>DecisionTreeRegressor</code> from sklearn to identify key loyalty drivers<br>• Implemented feature importance analysis to identify spending score and remuneration as primary factors<br>• Used <b>GridSearchCV</b> to optimize hyperparameters (max_depth=3, max_leaf_nodes=40)<br>• Achieved 91.04% R-squared score on the full dataset</td>
+          </tr>
+          <tr>
+            <td><b>K-means Clustering</b></td>
+            <td>• Used elbow method and silhouette scores to determine optimal number of clusters (k=5)<br>• Applied <b>K-means clustering</b> to segment customers based on spending score and remuneration<br>• Achieved <b>silhouette score of 0.604</b> indicating good cluster separation<br>• Characterized clusters through descriptive statistics and visualization</td>
+          </tr>
+          <tr>
+            <td><b>Persona Development</b></td>
+            <td>• Created detailed customer personas based on cluster analysis<br>• Developed <b>cross-tabulation analysis</b> to examine loyalty point distribution across segments<br>• Generated cluster visualization using scatter plots with color-coding<br>• Formulated <b>segment-specific marketing recommendations</b></td>
+          </tr>
+        </table>
+
+        <div align="center">
+          <img src="assets/img/classification-knn.jpg" alt="ClassificationKNN">
+          <p><em>Scatterplot of Loyalty points showing unique customer plots</em></p>
+        </div>
+
+        <h4>4. Sentiment Analysis</h4>
+        <table>
+          <tr>
+            <th>Process</th>
+            <th>Technical Implementation</th>
+          </tr>
+          <tr>
+            <td><b>Text Preprocessing</b></td>
+            <td>• Tokenized and cleaned review and summary text using <b>NLTK</b><br>• Verified no relevant duplicates in the review dataset<br>• Performed a <b>manual verification</b> on 20 rows to identify most reliable text source (summary or full review text)</td>
+          </tr>
+          <tr>
+            <td><b>Sentiment Classification</b></td>
+            <td>• Implemented <b>VADER SIA model</b> for <i>sentiment polarity</i> scoring<br>• Applied <b>TextBlob</b> for <i>polarity and subjectivity</i> analysis<br>• Conducted comparative analysis between VADER (72.5% accuracy) and TextBlob (22.5% accuracy)<br>• Created sentiment distribution visualizations</td>
+          </tr>
+          <tr>
+            <td><b>Word Analysis</b></td>
+            <td>• Generated word clouds for positive and negative sentiment reviews<br>• Extracted top 20 frequent terms by sentiment polarity<br>• Identified key positive terms (play, great, love, fun) and negative terms (anger, disappointed, boring)<br>• Conducted <b>product-level sentiment aggregation</b></td>
+          </tr>
+        </table>
+
+        <div align="center">
+          <img src="assets/img/sentiment-polarity.jpg" alt="SentimentPolarity">
+          <p><em>Distribution showing Sentiment Polarity and Subjectivity scores with a rule-based classification of sentiment scores</em></p>
+        </div>
+
+        <hr>
+
+        <h4>🗝️ Key Insights:</h4>
+        <h5>Loyalty Drivers Analysis</h5>
+        <ul>
+          <li>Identified <b>spending score</b> (0.67) and <b>remuneration</b> (0.62) as strongest predictors of customer loyalty</li>
+          <li>Determined that age has a weak negative correlation (-0.04) with loyalty points but remains statistically significant</li>
+          <li>Developed robust <b>Weighted Least Squares</b> regression model explaining <b>82.1%</b> of loyalty point variance</li>
+          <li>Created <b>predictive formula: Loyalty Points = -1944.89 + 31.87 × Spending Score + 31.39 × Remuneration + 10.57 × Age</b></li>
+        </ul>
+        <blockquote>
+          <p><b>Value Discovery:</b> Every 1-point increase in spending score correlates with a 31.87-point increase in loyalty points, while each £1,000 in income corresponds to a 31.39-point increase</p>
+        </blockquote>
+
+        <h4>Customer Segmentation</h4>
+        <ul>
+          <li>Identified <b>five distinct customer segments</b> with clear behavior patterns and loyalty characteristics</li>
+          <li>Labelled <i>"Premium Buyers"</i> (<b>17.8%</b> of customers) averaging 3988 loyalty points with high income and frequent purchases</li>
+          <li>Classified <i>"Occasional Affluents"</i> (<b>16.5%</b> of customers) with high income but relatively low loyalty engagement (912 points)</li>
+          <li>Categorized the <b>largest segment</b> as <i>"Regular Customers"</i> (<b>38.7%</b>) with mid-range income and consistent spending</li>
+        </ul>
+        <blockquote>
+          <p><b>Value Discovery:</b> "Bargain Hunters" (13.4% of customers) show high spending despite lower income, representing opportunity for targeted value-based marketing</p>
+        </blockquote>
+
+        <h4>Sentiment Analysis</h4>
+        <ul>
+          <li>Determined that <b>90%</b> of customer reviews express <b>positive sentiment</b> toward Turtle Games products</li>
+          <li>Validated that VADER sentiment analyzer (72.5% accuracy) significantly outperformed TextBlob (22.5%) for game product reviews</li>
+          <li>Identified key positive review themes around gameplay experience, physical components, and family enjoyment</li>
+          <li>Located <b>negative sentiment</b> clusters around <i>product quality issues, age-appropriateness, and gameplay mechanics</i></li>
+        </ul>
+        <blockquote>
+          <p><b>Value Discovery:</b> Premium Buyers show highest positive sentiment (90%) with only 5% negative reviews, indicating strong correlation between satisfaction and loyalty</p>
+        </blockquote>
+
+        <div align="center">
+          <img src="assets/img/sentiment-product-customer-trends.jpg" alt="Sentiment_Product_CustomerTrends">
+          <p><em>Average Sentiment Polarity for different products and Customer Personas</em></p>
+        </div>
+
+        <hr>
+
+        <h4>📊 Data-Driven Recommendations:</h4>
+        <p>
+          Based on comprehensive data analysis, the following strategic recommendations were developed to enhance Turtle Games' business performance:
+        </p>  
+        <h4>Loyalty Program Optimization</h4>
+        <ul>
+          <li>Implement a <b>tiered, gamified loyalty program</b> with distinct tiers matching the five customer segments</li>
+          <li>Offer VIP "Platinum" benefits to Premium Buyers, including exclusive products and early access</li>
+          <li>Create customized "Gold" tier for Regular Customers with bundle offers and upselling opportunities</li>
+          <li>Develop entry-level tiers with targeted incentives for Basic Buyers, Bargain Hunters, and Occasional Affluents</li>
+          <li>Deploy the <b>WLS</b> predictive model to <b>anticipate loyalty behaviors</b> and tailor marketing approaches</li>
+        </ul>
+        <h4>Customer Engagement Strategies</h4>
+        <ul>
+          <li>Develop <b>targeted strategies</b> for "Occasional Affluents" who have high income but inconsistent spending</li>
+          <li>Create personalized incentives based on spending score and income level analysis</li>
+          <li>Investigate and address lower engagement among younger customers with <b>age-appropriate offerings</b></li>
+          <li>Monitor <b>segment migration</b> patterns to evaluate effectiveness of marketing interventions</li>
+          <li>Implement clear upgrade paths between segments with tailored incentives</li>
+        </ul>
+        <h4>Product Development & Quality Enhancement</h4>
+        <ul>
+          <li>Address <b>product quality issues</b> identified through sentiment analysis, particularly for budget offerings</li>
+          <li>Enhance gameplay mechanics and instructions based on negative sentiment patterns</li>
+          <li>Develop additional family-oriented products based on positive sentiment around family gameplay</li>
+          <li>Implement <b>feature-based rating system</b> to gather more structured feedback on product qualities</li>
+          <li>Invest in advanced NLP techniques fine-tuned for Turtle Games' review data to extract deeper insights</li>
+        </ul>
+        <h4>Technical & Data Recommendations</h4>
+        <ul>
+          <li>Enhance data collection to include <b>customer ID</b> information to reduce potential duplicate analysis</li>
+          <li>Improve age data collection to address the 2.5% potential misreporting identified</li>
+          <li>Clarify loyalty points mechanics including expiration dates and redemption structures</li>
+          <li>Add timestamp information to purchase and review data to enable trend analysis</li>
+          <li>Develop comprehensive <b>product category mappings</b> to enable more granular product performance analysis</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+
+  <!-- Footer from Homepage -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6 text-center text-lg-start">
+          <h5 class="mb-3">Sujith Kumaar</h5>
+          <p class="mb-1">Analysing Data | Igniting Decisions</p>
+          <p class="small opacity-75">© 2025 Sujith Kumaar | All Rights Reserved</p>
+        </div>
+        <div class="col-lg-6 text-center text-lg-end">
+          <div class="mb-3">
+            <a href="https://github.com/Sujith-DA279" class="text-white mx-2" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white mx-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white mx-2" target="_blank"><i class="fas fa-chart-line"></i></a>
+            <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white mx-2"><i class="fas fa-envelope"></i></a>
+          </div>
+          <p class="small opacity-75">Made with <i class="fas fa-heart text-danger"></i> using GitHub Pages</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
