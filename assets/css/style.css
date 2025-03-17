@@ -1,0 +1,175 @@
+/* Custom styling for portfolio site */
+
+/* Hero section styling with banner gradient */
+.hero-section {
+    padding: 100px 0;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Custom gradient classes */
+.project-gradient-dark {
+    background: linear-gradient(to right, #0f172a, #1e3a8a);
+}
+
+.project-gradient-purple {
+    background: linear-gradient(to right, #581c87, #312e81);
+}
+
+.project-gradient-teal {
+    background: linear-gradient(to right, #164e63, #134e4a);
+}
+
+.hero-gradient {
+    background: linear-gradient(to right, #0f172a, #1e3a8a, #164e63);
+}
+
+.bg-light-gradient {
+    background: linear-gradient(to right, #f1f5f9, #eff6ff);
+}
+
+/* General styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+/* Card hover effects */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Project page specific */
+.project-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/data-background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+    margin-bottom: 30px;
+}
+
+.project-details {
+    margin-bottom: 50px;
+}
+
+.objectives-list li {
+    margin-bottom: 10px;
+}
+
+table {
+    margin-bottom: 30px;
+}
+
+.highlight-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #0d6efd;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.insight-card {
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.insight-card-primary {
+    background-color: #cfe2ff;
+    border-left: 4px solid #0d6efd;
+}
+
+.insight-card-success {
+    background-color: #d1e7dd;
+    border-left: 4px solid #198754;
+}
+
+.insight-card-warning {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+}
+
+/* Table styling */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table-insights th {
+    background-color: #f1f1f1;
+}
+
+/* Image styling */
+.img-analysis {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Recommendations section */
+.recommendations-section {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+    margin: 30px 0;
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #0d6efd;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.back-to-top:hover {
+    background-color: #0b5ed7;
+    color: white;
+}
+
+/* For the project tabs */
+.project-nav {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.project-nav .nav-link {
+    color: #495057;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.project-nav .nav-link.active {
+    background-color: #0d6efd;
+    color: white;
+}
+
+/* Badges styling */
+.badge {
+    margin-right: 5px;
+}
+
+/* Footer styling */
+footer {
+    margin-top: 50px;
+}
