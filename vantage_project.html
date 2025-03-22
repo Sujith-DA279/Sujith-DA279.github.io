@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantitative Financial Analytics: Decoding Stock Returns</title>
+  <!-- Bootstrap for responsive design -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Core Styling Variables */
+    :root {
+      --primary-gradient: linear-gradient(to right, #0f172a, #1e3a8a, #164e63);
+      --highlight-blue: #1e3a8a;
+      --light-gray: #f8f9fa;
+      --divider-color: #e9ecef;
+    }
+    
+    /* General Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+    }
+
+    /* Navigation Styles */
+    .navbar {
+      background: var(--primary-gradient);
+      padding: 1rem 0;
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      border-radius: 50%;
+      bottom: 30px;
+      right: 30px;
+      width: 40px;
+      height: 40px;
+      background-color: #0366d6;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      z-index: 99;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    
+    .back-to-top:hover {
+      opacity: 1;
+      color: white;
+    }
+    
+    /* Project Content Styles */
+    .container-lg {
+      max-width: 100%;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--highlight-blue);
+    }
+
+    h3, h4 {
+      margin-top: 2rem;  /* Adds space above headings */
+      margin-bottom: 1rem;  /* Adds space below headings */
+    }
+
+    h5 {
+      margin-top: 1.5rem;  /* Slightly less space for subheadings */
+    }
+
+    hr {
+      margin: 2.5rem 0;  /* Increased vertical margin around horizontal rules */
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+    }
+    
+    img {
+      max-width: 75%;
+      height: auto;
+    }
+    
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    
+    blockquote {
+      border-left: 4px solid var(--highlight-blue);
+      padding-left: 16px;
+      color: #555;
+      background-color: #e1eafa;
+      margin: 20px 0;
+    }
+    
+    a {
+      color: var(--highlight-blue);
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    .section-peek-line {
+      width: 50px;
+      height: 4px;
+      background: var(--primary-gradient);
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2.5rem;
+      font-weight: 600;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 60px;
+      height: 3px;
+      background: var(--primary-gradient);
+    }
+    
+    /* Project-specific styles */
+    .project-header {
+      background-color: var(--light-gray);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+    
+    .project-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .project-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }    
+      /* Footer Styles */
+      .footer {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 3rem 0;
+    }
+
+    .footer h5, .footer p {
+      color: white !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation from Homepage -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Navigation Links (left side) -->
+        <div class="collapse navbar-collapse order-1 order-lg-0" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#about">About Me</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#skills">Tech Skills</a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Centered Brand/Logo -->
+        <a class="navbar-brand mx-auto order-0 order-lg-1" href="index.html">Sujith Kumaar</a>
+        
+        <!-- Navigation Links (right side) -->
+        <div class="collapse navbar-collapse order-2" id="navbarNav2">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="index.html#projects" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+              <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+                <li><a class="dropdown-item" href="index.html#projects">All Projects</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="turtle-games.html">Turtle Games</a></li>
+                <li><a class="dropdown-item" href="nhs_project.html">NHS UK</a></li>
+                <li><a class="dropdown-item" href="2Market_project.html">2Market</a></li>
+                <li><a class="dropdown-item active" href="vantage_project.html">Vantage Data</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="ms-3 d-none d-lg-block">
+            <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Sujith-DA279" class="text-white me-2" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-2" target="_blank"><i class="fas fa-chart-line"></i></a>
+            <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-2"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Project Content Section -->
+  <div class="project-header">
+    <div class="container">
+      <h1 class="project-title">Quantitative Financial Analytics: Decoding Stock Returns</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.html#projects">Projects</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Vantage Data</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container-lg p-responsive mt-2 mb-5">
+    <div class="project-content">
+      <article class="markdown-body">
+        <h4>📋 Project Brief</h4>
+        <p>
+          This project conducted an in-depth analysis of stock market behaviour for major tech companies (Apple, Google, and NVIDIA) to identify opportunities for trading strategies around earnings announcements. Using Python, advanced statistical methods, and machine learning, our team delivered actionable insights that can drive enhanced trading decision-making by understanding the relationships between stock price movements, earnings announcements, macroeconomic conditions, and news sentiment.
+        </p>
+
+        <h4>🎯 Business Objectives</h4>
+        <p>
+          The analysis addressed key business needs:
+        </p>
+        <ul>
+          <li>Understanding stock price movements before and after earnings announcements</li>
+          <li>Identifying the impact of key financial metrics on stock performance</li>
+          <li>Analysing macroeconomic influences on earnings outcomes and stock prices</li>
+          <li>Determining the role of news sentiment in market reactions</li>
+        </ul>
+
+        <hr>
+
+        <h4>Project Overview:</h4>
+        <div>
+          <table>
+            <tr>
+              <th>⏱️ Duration</th>
+              <th>🏆 Grade</th>
+              <th>🛠️ Technologies</th>
+              <th>📊 Datasets</th>
+            </tr>
+            <tr>
+              <td><b>6 Weeks</b></td>
+              <td><b>80% (Distinction)</b></td>
+              <td>
+                <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+                <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
+                <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="scikit-learn"><br>
+                <img src="https://img.shields.io/badge/finBERT-4169E1?style=for-the-badge&logo=python&logoColor=white" alt="NLTK">
+                <img src="https://img.shields.io/badge/statsmodels-4169E1?style=for-the-badge&logo=python&logoColor=white" alt="statsmodels">
+              </td>
+              <td>
+                <b>20+</b> years of stock data<br>
+                <b>5</b> macroeconomic indicators<br>
+                <b>1,423</b> news articles
+              </td>
+            </tr>
+          </table>
+          
+          <div class="mt-3 d-flex align-items-center">
+            <span class="me-3"><b>👨‍💻 Project Code:</b></span>
+            <a href="https://github.com/Sujith-DA279/Quant_Financial_Analytics" target="_blank" class="btn btn-sm btn-primary">
+              <i class="fab fa-github me-1"></i>View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <hr>
+
+        <h4>🔍 Analytical Methodology</h4>
+
+        <h5>Data Sources and Collection</h5>
+        <table>
+          <tr>
+            <th>Data Category</th>
+            <th>Source</th>
+            <th>Time Period</th>
+            <th>Key Metrics</th>
+          </tr>
+          <tr>
+            <td><b>Stock Price Data</b></td>
+            <td>Yahoo Finance API</td>
+            <td>2000-2024</td>
+            <td>OHLCV (Open, High, Low, Close, Volume)</td>
+          </tr>
+          <tr>
+            <td><b>Financial Metrics</b></td>
+            <td>Financial Modeling Prep (FMP API)</td>
+            <td>2000-2024</td>
+            <td>Earnings, Revenue, Key Financial Ratios</td>
+          </tr>
+          <tr>
+            <td><b>Macroeconomic Indicators</b></td>
+            <td>Federal Reserve Economic Data (FRED API)</td>
+            <td>2000-2024</td>
+            <td>GDP, Inflation, Unemployment, Federal Debt, Treasury Yields</td>
+          </tr>
+          <tr>
+            <td><b>News Sentiment</b></td>
+            <td>NY Times Articles (Vantage Data)</td>
+            <td>2019-2024</td>
+            <td>1,423 articles after cleanup</td>
+          </tr>
+        </table>
+
+        <div align="center">
+          <img src="https://github.com/user-attachments/assets/22065cf7-93c4-424f-8bd0-fd7c733a1e73" alt="Data Ingestion from Different Opensource APIs">
+          <p><em>Data Ingestion from Different Opensource APIs</em></p>
+        </div>
+
+        <h5>Feature Engineering</h5>
+        <p>We created 90+ derived features across the following categories:</p>
+        <table>
+          <tr>
+            <th>Feature Category</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td><b>Stock Metrics</b></td>
+            <td>Daily Returns, Balance of Power (BOP), Pre/Post Announcement Returns, Price Coefficient of Variation</td>
+          </tr>
+          <tr>
+            <td><b>Financial Indicators</b></td>
+            <td>EPS Surprise, Revenue Surprise, Standardized Surprise Scores, Profit Margins, ROE, ROA</td>
+          </tr>
+          <tr>
+            <td><b>Macro Indicators</b></td>
+            <td>GDP Growth Rates (QoQ/YoY), Federal Debt Change, CPI Changes, Treasury Yield Movements</td>
+          </tr>
+          <tr>
+            <td><b>Temporal Features</b></td>
+            <td>TTM Metrics, QoQ Changes, YoY Growth Rates</td>
+          </tr>
+          <tr>
+            <td><b>Sentiment Scores</b></td>
+            <td>FinBERT Composite Scores, Company/Macro Sentiment Classification</td>
+          </tr>
+        </table>
+
+        <h5>Analysis Components</h5>
+        <table>
+          <tr>
+            <th>Analysis Type</th>
+            <th>Key Methodologies</th>
+            <th>Analytical Techniques</th>
+            <th>Outcomes</th>
+          </tr>
+          <tr>
+            <td><b>Earnings Event Analysis</b></td>
+            <td>• Event study framework<br>• Multiple return windows (1-5 days)<br>• Cross-sectional surprise analysis</td>
+            <td>• Winsorization of extreme values<br>• Segmentation by surprise direction<br>• Temporal decomposition (2000-2024)</td>
+            <td>• 2-3 day optimal reaction window<br>• ~0.3 correlation between EPS surprise and returns<br>• Surprise threshold identification</td>
+          </tr>
+          <tr>
+            <td><b>Macroeconomic Factor Analysis</b></td>
+            <td>• Correlation heatmaps<br>• Time-series decomposition<br>• Multi-factor regression<br>• Company-specific profiling</td>
+            <td>• Rate-of-change calculations (QoQ, YoY)<br>• Rolling window correlations<br>• Comparative macro sensitivity analysis</td>
+            <td>• Unique company-macro sensitivity maps<br>• Identified key indicators by company<br>• Quantified revenue vs. macro impact</td>
+          </tr>
+          <tr>
+            <td><b>News Sentiment Analysis</b></td>
+            <td>• NLP-based sentiment extraction<br>• Rule-based article classification<br>• 5-day pre/post-publication windows</td>
+            <td>• FinBERT financial sentiment scoring<br>• Publishing date Event-study<br>• Sentiment-return correlation analysis</td>
+            <td>• Company-specific sentiment responses<br>• Negative news recovery patterns<br>• Pre/post-earnings sentiment drift detection</td>
+          </tr>
+          <tr>
+            <td><b>Trading Strategy Development</b></td>
+            <td>• Signal classification (Buy/Sell/Hold)<br>• Random Forest ensemble modeling<br>• Multi-factor integration<br>• Backtesting framework</td>
+            <td>• Company-specific thresholds<br>• Hyperparameter optimization<br>• Feature importance ranking<br>• Performance metrics calculation</td>
+            <td>• 6.5-12.7% average return per trade<br>• 83-95% signal precision<br>• Realized cumulative returns >20x<br>• Feature importance hierarchies</td>
+          </tr>
+        </table>
+
+        <hr>
+
+        <h4>🗝️ Key Insights and Results</h4>
+
+        <h5>Earnings Analysis</h5>
+        <ul>
+          <li>EPS Surprise positively correlates with post-announcement returns (correlation ~0.3)</li>
+          <li>Market reaction to surprises strongest within 2-3 days after announcement</li>
+          <li>Pre-announcement momentum (BOP) shows positive correlation with post-announcement returns</li>
+        </ul>
+
+        <div align="center">
+          <img src="https://github.com/user-attachments/assets/2895f387-580a-4b58-862e-1cfa8cdfe2ac" alt="EPS Surprise vs Post announcement 2-day returns">
+          <p><em>EPS Surprise vs Post announcement 2-day returns</em></p>
+        </div>
+
+        <h5>Macroeconomic Analysis</h5>
+        <p>Each company showed unique macro sensitivity profiles:</p>
+
+        <table>
+          <tr>
+            <th>Company</th>
+            <th>Primary Macro Correlations</th>
+          </tr>
+          <tr>
+            <td><b>Apple</b></td>
+            <td>Federal Debt, Real GDP</td>
+          </tr>
+          <tr>
+            <td><b>Google</b></td>
+            <td>Real GDP, CPI, Treasury Yields</td>
+          </tr>
+          <tr>
+            <td><b>Nvidia</b></td>
+            <td>Real GDP, Treasury Yields, Unemployment</td>
+          </tr>
+        </table>
+
+        <p>Revenue growth consistently showed stronger impact on returns than macroeconomic factors for these high-growth tech companies.</p>
+
+        <div align="center">
+          <img src="https://github.com/user-attachments/assets/e39cf5b8-40bc-4a7e-8eeb-88b00dc79f0f" alt="Combined Correlation Heatmap">
+          <p><em>Combined Correlation Heatmap - Returns vs Revenue and Macro factors</em></p>
+        </div>
+
+        <h5>Sentiment Analysis</h5>
+        <p>News sentiment analysis revealed distinct patterns:</p>
+
+        <table>
+          <tr>
+            <th>Company</th>
+            <th>Sentiment Response Pattern</th>
+          </tr>
+          <tr>
+            <td><b>Apple</b></td>
+            <td>Recovers from negative news within 3 days; positive drift otherwise (~1% in 5 days)</td>
+          </tr>
+          <tr>
+            <td><b>Google</b></td>
+            <td>Most stable to sentiment (returns within 1% window); acts as safe-haven during macro uncertainty</td>
+          </tr>
+          <tr>
+            <td><b>Nvidia</b></td>
+            <td>Highest sentiment sensitivity (±2-3% fluctuations); strong positive reaction to macro negativity</td>
+          </tr>
+        </table>
+
+        <p>Pre-earnings sentiment shows consistent optimistic bias with post-announcement sentiment typically declining.</p>
+
+        <div align="center">
+          <img src="https://github.com/user-attachments/assets/e07f3ac3-7384-4015-8b07-8a0c00556073" alt="Event Study Analysis - Apple">
+          <p><em>Example of Event Study Analysis chart - Apple for Stock sentiment</em></p>
+        </div>
+
+        <div align="center">
+          <img src="https://github.com/user-attachments/assets/6e251f3f-b42d-4d4f-a010-e45109d17e88" alt="Sentiment and Stock-price Trend">
+          <p><em>Sentiment and Stock-price Trend around Earnings Announcements</em></p>
+        </div>
+
+        <h5>Trading Strategy Performance</h5>
+        <table>
+          <tr>
+            <th>Company</th>
+            <th>Avg. Return per Deal</th>
+            <th>Max Drawdown</th>
+            <th>Cumulative Return</th>
+            <th>Precision</th>
+          </tr>
+          <tr>
+            <td><b>AAPL</b></td>
+            <td>6.5%</td>
+            <td>-14.8%</td>
+            <td>>20x (51 earning announcements)</td>
+            <td>83.3%</td>
+          </tr>
+          <tr>
+            <td><b>GOOGL</b></td>
+            <td>8.0%</td>
+            <td>0.0%</td>
+            <td>>20x (39 earning announcements)</td>
+            <td>95.0%</td>
+          </tr>
+          <tr>
+            <td><b>NVDA</b></td>
+            <td>12.7%</td>
+            <td>-6.9%</td>
+            <td>~700% (39 earning announcements)</td>
+            <td>88.9%</td>
+          </tr>
+        </table>
+
+        <hr>
+
+        <h4>🛠️ Technical Implementation</h4>
+        <p>The analysis was implemented using:</p>
+        <ul>
+          <li><b>Data Processing</b>: Pandas, NumPy</li>
+          <li><b>Machine Learning</b>: Scikit-learn, StatsModels</li>
+          <li><b>ML Models</b>: RandomForest, OLS, Binary and Multinomial Logistic Regression</li>
+          <li><b>NLP</b>: FinBERT, TextBlob</li>
+          <li><b>Visualization</b>: Matplotlib, Seaborn</li>
+        </ul>
+
+        <hr>
+
+        <h4>📊 Recommendations</h4>
+        
+        <h5>Trading Strategy Recommendations</h5>
+        <ol>
+          <li><b>Implement Stock-Specific Models</b>: Different threshold parameters for each stock (±2% for AAPL, ±5% for GOOGL/NVDA)</li>
+          <li><b>Focus on Key Indicators</b>:
+            <ul>
+              <li>EPS and Revenue Surprises (all stocks)</li>
+              <li>Pre-announcement BOP momentum</li>
+              <li>Company-specific financial metrics (profitability metrics for B2B stocks)</li>
+            </ul>
+          </li>
+          <li><b>Time-Window Optimization</b>: 2-day trading window for GOOGL/NVDA, 5-day for AAPL</li>
+          <li><b>Risk Management</b>: Set tighter stop-loss for NVDA due to higher volatility</li>
+          <li><b>Sentiment Integration</b>: Use as supplementary signal, particularly for NVDA</li>
+        </ol>
+        
+        <h5>Technical Recommendations</h5>
+        <ol>
+          <li><b>Model Validation</b>: Implement out-of-sample testing across diverse market conditions</li>
+          <li><b>Ensemble Approaches</b>: Test combining multiple models for signal generation</li>
+          <li><b>Feature Refinement</b>: Further customize feature importance by stock</li>
+          <li><b>Continuous Learning</b>: Establish monitoring system to adapt to evolving market dynamics</li>
+        </ol>
+
+        <hr>
+
+        <h4>👥 Team</h4>
+        <p>Project by Insight Alchemists Team:</p>
+        <ul>
+          <li>Hemalatha Nagaraj</li>
+          <li>Manasa Chilakapati</li>
+          <li>Sagar Varma</li>
+          <li>Sujith Kumaar K C</li>
+          <li>Yuliya Pauzunova</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+
+  <!-- Footer from Homepage -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6 text-center text-lg-start">
+          <h5 class="mb-3">Sujith Kumaar</h5>
+          <p class="mb-1">Analysing Data | Igniting Decisions</p>
+          <p class="small opacity-75">© 2025 Sujith Kumaar | All Rights Reserved</p>
+        </div>
+        <div class="col-lg-6 text-center text-lg-end">
+          <div class="mb-3">
+            <a href="https://github.com/Sujith-DA279" class="text-white mx-2" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white mx-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white mx-2" target="_blank"><i class="fas fa-chart-line"></i></a>
+            <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white mx-2"><i class="fas fa-envelope"></i></a>
+          </div>
+          <p class="small opacity-75">Made with <i class="fas fa-heart text-danger"></i> using GitHub Pages</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
