@@ -176,81 +176,107 @@
       color: white !important;
     }
 
-  </style>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SSC2LHEJY9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    .custom-contact-btn {
+      color: white;
+      background: linear-gradient(to right, #1e3a8a, #164e63);
+      border: none;
+      transition: all 0.3s ease;
+      padding: 0.6rem 1.2rem;
+    }
 
-  gtag('config', 'G-SSC2LHEJY9');
-</script>
+    .custom-contact-btn:hover {
+      color: white !important;
+      background: linear-gradient(to right, #25a244, #2dc653);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Action Buttons */
+    .action-btn {
+      padding: 1rem 2rem;
+      font-weight: 750;
+      margin-right: 25px;
+      transition: all 0.3s ease;
+    }
+        
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+  </style>
 </head>
 
 <body>
   <!-- Navigation from Homepage -->
-    <header class="sticky-top">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-          <div class="container">
-            <!-- Centered Brand/Logo for mobile -->
-            <a class="navbar-brand d-lg-none mx-auto" href="index.html">Sujith Kumaar</a>
-            
-            <!-- Mobile Toggle Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <!-- All Navigation Links in a Single Collapsible Container -->
-            <div class="collapse navbar-collapse" id="navbarContent">
-              <!-- Left side links -->
-              <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html#about">About Me</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html#skills">Tech Skills</a>
-                </li>
-              </ul>
-              
-              <!-- Centered Brand/Logo for desktop -->
-              <a class="navbar-brand d-none d-lg-block mx-auto" href="index.html">Sujith Kumaar</a>
-              
-              <!-- Right side links -->
-              <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="index.html#projects" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
-                  <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
-                    <li><a class="dropdown-item" href="index.html#projects">All Projects</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="turtle_games_project.html">Turtle Games</a></li>
-                    <li><a class="dropdown-item" href="nhs_project.html">NHS UK</a></li>
-                    <li><a class="dropdown-item" href="2Market_project.html">2Market</a></li>
-                    <li><a class="dropdown-item" href="vantage_project.html">Vantage Data</a></li>
-                  </ul>
-                </li>
-                <!-- Social icons for mobile -->
-                <li class="nav-item d-lg-none">
-                  <div class="d-flex mt-2">
-                    <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-3" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Sujith-DA279" class="text-white me-3" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-3" target="_blank"><i class="fas fa-chart-line"></i></a>
-                    <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-3"><i class="fas fa-envelope"></i></a>
-                  </div>
-                </li>
-              </ul>
-              
-              <!-- Social icons for desktop -->
-              <div class="ms-3 d-none d-lg-block">
-                <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-2" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Sujith-DA279" class="text-white me-2" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-2" target="_blank"><i class="fas fa-chart-line"></i></a>
-                <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-2"><i class="fas fa-envelope"></i></a>
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <!-- Centered Brand/Logo for mobile -->
+        <a class="navbar-brand d-lg-none mx-auto" href="index.html">Sujith Kumaar</a>
+        
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- All Navigation Links in a Single Collapsible Container -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <!-- Left side links -->
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#about">About Me</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#skills">Tech Toolkit</a>
+            </li>
+          </ul>
+          
+          <!-- Centered Brand/Logo for desktop -->
+          <a class="navbar-brand d-none d-lg-block mx-auto" href="index.html">Sujith Kumaar</a>
+          
+          <!-- Right side links -->
+          <ul class="navbar-nav ms-auto">
+            <!-- Project-specific quick links button -->
+            <li class="nav-item">
+              <div class="dropdown">
+                <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="projectsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  Project Details
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="projectsDropdown">
+                  <li><a class="dropdown-item" href="turtle_games_project.html">Turtle Games</a></li>
+                  <li><a class="dropdown-item" href="nhs_project.html">NHS UK</a></li>
+                  <li><a class="dropdown-item" href="2Market_project.html">2Market</a></li>
+                  <li><a class="dropdown-item" href="vantage_project.html">Vantage Data</a></li>
+                </ul>
               </div>
-            </div>
-          </div>
-        </nav>
-    </header>
+            </li>
+            
+            <!-- Social icons -->
+            <li class="nav-item ms-3 d-none d-lg-block">
+              <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/Sujith-DA279" class="text-white me-2" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-2" target="_blank"><i class="fas fa-chart-line"></i></a>
+              <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-2"><i class="fas fa-envelope"></i></a>
+            </li>
+            
+            <!-- Social icons for mobile -->
+            <li class="nav-item d-lg-none">
+              <div class="d-flex mt-2">
+                <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-3" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Sujith-DA279" class="text-white me-3" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-3" target="_blank"><i class="fas fa-chart-line"></i></a>
+                <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-3"><i class="fas fa-envelope"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
 
   <!-- Project Content Section -->
   <div class="project-header">
@@ -492,6 +518,38 @@
      </article>
     </div>
   </div>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-4 bg-light">
+  <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      
+      <!-- Single line text -->
+      <p class="mb-3">Interested in collaborating or have questions about my work? I'm always open to discussing new projects and opportunities.</p>
+      
+      <!-- Buttons and social icons row -->
+      <div class="d-flex flex-wrap justify-content-center align-items-center gap-2">
+          <!-- Action buttons -->
+          <a href="assets/docs/Sujith_Kumaar_CV.pdf" class="btn btn-primary me-2 mb-2 action-btn" target="_blank">
+              <i class="fas fa-file-pdf me-1"></i> Get My CV
+          </a>
+          <a href="mailto:sujithkumaar.kc@gmail.com" class="btn custom-contact-btn me-2 mb-2 action-btn">
+              <i class="fas fa-envelope me-1"></i> Email Me
+          </a>
+          
+          <!-- Social icons styled as buttons -->
+          <a href="https://linkedin.com/in/sujith-kumaar-kc" class="btn btn-outline-primary social-btn mb-2" target="_blank">
+              <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/Sujith-DA279" class="btn btn-outline-dark social-btn mb-2" target="_blank">
+              <i class="fab fa-github"></i>
+          </a>
+          <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="btn btn-outline-primary social-btn mb-2" target="_blank">
+              <i class="fas fa-chart-line"></i>
+          </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer from Homepage -->
   <footer class="footer">

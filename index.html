@@ -64,58 +64,18 @@
         /* About Section */
         .profile-photo-container {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             margin-bottom: 1rem;
-        }
-        
-        /* Timeline Styles */
-        .timeline-container {
-            padding: 1rem 0;
-        }
-        
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-            border-left: 2px solid var(--divider-color);
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-        
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .timeline-dot {
-            position: absolute;
-            left: -39px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background-color: var(--highlight-blue);
-            border: 2px solid white;
-            box-shadow: 0 0 0 2px var(--highlight-blue);
-        }
-        
-        .timeline-date {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--highlight-blue);
-        }
-        
-        .timeline-content {
-            background-color: white;
             padding: 1rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        
-        .timeline-content h5 {
-            margin-bottom: 0.25rem;
+
+        #about .mb-4 p, 
+        #about .mb-4 ul {
+            font-size: 1.1rem; /* Adjust the size as needed */
+            line-height: 1.6;  /* Optional: Adjust line height for better readability */
         }
-        
+                       
         /* Tab Styles */
         .nav-tabs .nav-link {
             color: #495057;
@@ -307,16 +267,78 @@
         }
         
         .custom-contact-btn {
-            color: #164e63;
-            background-color: transparent;
-            border: 1px solid #164e63;
+            color: white;
+            background: linear-gradient(to right, #1e3a8a, #164e63);
+            border: none;
             transition: all 0.3s ease;
+            padding: 0.6rem 1.2rem;
         }
 
         .custom-contact-btn:hover {
-            color: white;
-            background: linear-gradient(to right, #1e3a8a, #164e63);
-            border-color: transparent;
+            color: white !important;
+            background: linear-gradient(to right, #25a244, #2dc653);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Certification Icons Styling */
+        .cert-icon-container {
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        
+        .cert-icon-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: rgba(255,255,255,0.8);
+        }
+        
+        .cert-icon-container img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .cert-icon-label {
+            font-size: 0.75rem;
+            text-align: center;
+            color: #495057;
+            margin-top: 5px;
+        }
+        
+        .certification-icons-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        /* Action Buttons */
+        .action-btn {
+            padding: 1rem 2rem;
+            font-weight: 750;
+            margin-right: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* HTML smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Styling for social buttons to match regular buttons */
+        .social-btn {
+            padding: 0.9rem 1.2rem;
+            margin-right: 0.2rem;
+            border-radius: 0.2rem;
         }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SSC2LHEJY9"></script>
@@ -329,7 +351,7 @@
 </head>
 <body>
     <!-- Navigation -->
-        <header class="sticky-top">
+    <header class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark">
           <div class="container">
             <!-- Centered Brand/Logo for mobile -->
@@ -348,7 +370,10 @@
                   <a class="nav-link" href="index.html#about">About Me</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="index.html#skills">Tech Skills</a>
+                  <a class="nav-link" href="index.html#projects">Projects</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html#skills">Tech Toolkit</a>
                 </li>
               </ul>
               
@@ -357,17 +382,29 @@
               
               <!-- Right side links -->
               <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="index.html#projects" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
-                  <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
-                    <li><a class="dropdown-item" href="index.html#projects">All Projects</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="turtle_games_project.html">Turtle Games</a></li>
-                    <li><a class="dropdown-item" href="nhs_project.html">NHS UK</a></li>
-                    <li><a class="dropdown-item" href="2Market_project.html">2Market</a></li>
-                    <li><a class="dropdown-item" href="vantage_project.html">Vantage Data</a></li>
-                  </ul>
+                <!-- Project-specific quick links button -->
+                <li class="nav-item">
+                  <div class="dropdown">
+                    <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="projectsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                      Project Details
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="projectsDropdown">
+                      <li><a class="dropdown-item" href="turtle_games_project.html">Turtle Games</a></li>
+                      <li><a class="dropdown-item" href="nhs_project.html">NHS UK</a></li>
+                      <li><a class="dropdown-item" href="2Market_project.html">2Market</a></li>
+                      <li><a class="dropdown-item" href="vantage_project.html">Vantage Data</a></li>
+                    </ul>
+                  </div>
                 </li>
+                
+                <!-- Social icons -->
+                <li class="nav-item ms-3 d-none d-lg-block">
+                  <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+                  <a href="https://github.com/Sujith-DA279" class="text-white me-2" target="_blank"><i class="fab fa-github"></i></a>
+                  <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-2" target="_blank"><i class="fas fa-chart-line"></i></a>
+                  <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-2"><i class="fas fa-envelope"></i></a>
+                </li>
+                
                 <!-- Social icons for mobile -->
                 <li class="nav-item d-lg-none">
                   <div class="d-flex mt-2">
@@ -378,233 +415,98 @@
                   </div>
                 </li>
               </ul>
-              
-              <!-- Social icons for desktop -->
-              <div class="ms-3 d-none d-lg-block">
-                <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white me-2" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Sujith-DA279" class="text-white me-2" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white me-2" target="_blank"><i class="fas fa-chart-line"></i></a>
-                <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white me-2"><i class="fas fa-envelope"></i></a>
-              </div>
             </div>
           </div>
         </nav>
     </header>
 
-    <!-- About Me Section -->  
-    <section id="about" class="py-4">
+    <!-- About Me Section (Removed Title) -->  
+    <section id="about" class="py-5">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            
-            <!-- Condensed Highlight Section -->
-            <div class="row mb-4">
-                <div class="col-lg-4 text-center mb-4 mb-lg-0">
+            <!-- Main Content Row -->
+            <div class="row">
+                <!-- Left Column: Photo and Certification Icons -->
+                <div class="col-lg-4 mb-4 mb-lg-0">
                     <div class="profile-photo-container">
-                        <img src="assets/img/ProfilePic.jpg" alt="Profile Photo" class="img-fluid" style="max-width: 300px; width: 100%;">
+                        <img src="assets/img/ProfilePic.jpg" alt="Profile Photo" class="img-fluid" style="max-width: 420px; width: 100%;">
                     </div>
                     
-                    <!-- Certification Highlights -->
-                    <div class="d-flex justify-content-center flex-wrap gap-2 mb-3">
-                        <!--<img src="assets/img/certifications/PBI.png" alt="Power BI" class="img-fluid" style="height: 60px; width: auto;">-->
-                        <img src="assets/img/certifications/BIDA.png" alt="BIDA" class="img-fluid" style="height: 60px; width: auto;">
-                        <img src="assets/img/certifications/psmi.png" alt="PSM" class="img-fluid" style="height: 60px; width: auto;">
-                        <img src="assets/img/logos/lse-logo.png" alt="LSE" class="img-fluid" style="height: 60px; width: auto;">
+                    <!-- Certification Icons with Hover Effect and Labels -->
+                    <div class="certification-icons-container">
+                        <div class="cert-icon-container" data-bs-toggle="modal" data-bs-target="#bidaModal">
+                            <img src="assets/img/certifications/BIDA.png" alt="BIDA" class="img-fluid">
+                            <div class="cert-icon-label">BIDA</div>
+                        </div>
+                        <div class="cert-icon-container" data-bs-toggle="modal" data-bs-target="#psmModal">
+                            <img src="assets/img/certifications/psmi.png" alt="PSM" class="img-fluid">
+                            <div class="cert-icon-label">PSM I</div>
+                        </div>
+                        <div class="cert-icon-container" data-bs-toggle="modal" data-bs-target="#lseModal">
+                            <img src="assets/img/logos/lse-logo.png" alt="LSE" class="img-fluid">
+                            <div class="cert-icon-label">LSE</div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-2">
+                        <small class="text-muted">Click on icons to view certifications</small>
                     </div>
                 </div>
                 
+                <!-- Right Column: Bio and Skills -->
                 <div class="col-lg-8">
-                    <h3 class="mb-2">Sujith Kumaar K C</h3>
+                    <h2 class="mb-2">Sujith Kumaar K C</h2>
                     <p class="tagline">Analysing Data | Igniting Decisions</p>
                     
-                    <p class="lead mb-4">From spearheading data-driven approaches that cut issue resolution time by 30% to now fully immersing in data analytics — bringing a quality-focused mindset that transforms complex data into trustworthy business decisions</p>
+                    <div class="mb-4">
+                        <p>From spearheading data-driven approaches that cut issue resolution time by 25% to now fully immersing in data analytics — bringing a quality-focused mindset that transforms complex data into trustworthy business decisions</p>
+                        <p>My journey from a quality-focused BA/test lead to data analytics has equipped me with a unique perspective on data integrity and business impact. I combine technical proficiency with a keen understanding of business needs to ensure that data not only tells a story, but drives meaningful action.</p>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-4">
+                                <h5 class="mb-3">Distinctive Strengths</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Financial Domain Expertise</li>
+                                    <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Data Quality & Validation</li>
+                                    <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Business-Focused Analytics</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="mb-3">Analytical Priorities</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Performance Metrics & KPIs</li>
+                                    <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Predictive Modeling & ML</li>
+                                    <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Data-Driven Decisions</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="mb-3">Industry Experience</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Financial Services (10+ yrs)</li>
+                                    <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Healthcare (NHS-LSE Project)</li>
+                                    <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Retail & Marketing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="d-flex gap-3">
-                        <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#bioDetails" aria-expanded="false" aria-controls="bioDetails">
-                            More About Me <i class="fas fa-chevron-down ms-1"></i>
-                        </button>
-                        <a href="assets/docs/Sujith_Kumaar_CV.pdf" class="btn btn-outline-success" target="_blank">Get My CV</a>
-                        <a href="mailto:sujithkumaar.kc@gmail.com" class="btn custom-contact-btn">
-                            Contact Me <i class="fas fa-envelope ms-1"></i>
+                    <!-- Action Buttons -->
+                    <div class="d-flex mt-4">
+                        <a href="assets/docs/Sujith_Kumaar_CV.pdf" class="btn btn-primary action-btn" target="_blank">
+                            <i class="fas fa-file-pdf me-2"></i>Get My CV
+                        </a>
+                        <a href="mailto:sujithkumaar.kc@gmail.com" class="btn custom-contact-btn action-btn">
+                            <i class="fas fa-envelope me-2"></i>Contact Me
                         </a>
                     </div>
                 </div>
             </div>
-            
-            <!-- Expandable Details Section -->
-            <div class="collapse" id="bioDetails">
-                <div class="card card-body border-0 bg-light mb-4">
-                    <!-- Tab Navigation for Different Content -->
-                    <ul class="nav nav-tabs mb-4" id="aboutTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="bio-tab" data-bs-toggle="tab" data-bs-target="#bio" type="button" role="tab" aria-controls="bio" aria-selected="true">Skills & Expertise</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="experience-tab" data-bs-toggle="tab" data-bs-target="#experience" type="button" role="tab" aria-controls="experience" aria-selected="false">Experience</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="education-tab" data-bs-toggle="tab" data-bs-target="#education" type="button" role="tab" aria-controls="education" aria-selected="false">Education & Certifications</button>
-                        </li>
-                    </ul>
-                    
-                    <!-- Tab Content -->
-                    <div class="tab-content" id="aboutTabsContent">
-                        <!-- Skills & Expertise Tab -->
-                        <div class="tab-pane fade show active" id="bio" role="tabpanel" aria-labelledby="bio-tab">
-                            <p>My journey from a quality-focused BA/test lead to data analytics has equipped me with a unique perspective on data integrity and business impact.
-                            I combine technical proficiency with a keen understanding of business needs to ensure that data not only tells a story, but drives meaningful action.</p> 
-                            <p>With a foundation in validating complex financial applications and regulatory reports data, I bring a disciplined approach to extracting reliable insights from messy, real-world data. 
-                            I'm passionate about translating data into clear, actionable strategies that improve performance and enhance customer experience.</p>
-                            
-                            <div class="row mt-4">
-                                <div class="col-md-4">
-                                    <h5 class="mb-3">Distinctive Strengths</h5>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Financial Domain Expertise</li>
-                                        <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Data Quality & Validation</li>
-                                        <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Business-Focused Analytics</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <h5 class="mb-3">Analytical Priorities</h5>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Performance Metrics & KPIs</li>
-                                        <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Predictive Modeling & Machine Learning</li>
-                                        <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Data-Driven Decision Making</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <h5 class="mb-3">Industry Experience</h5>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Financial Services (10+ yrs)</li>
-                                        <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Healthcare (NHS-LSE Project)</li>
-                                        <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>Retail & Marketing (LSE Projects)</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Experience Tab -->
-                        <div class="tab-pane fade" id="experience" role="tabpanel" aria-labelledby="experience-tab">
-                            <div class="timeline-container">
-                                <div class="timeline">
-                                    <!-- Timeline Item 1 -->
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot"></div>
-                                        <div class="timeline-date">Jul 2024 - Mar 2025</div>
-                                        <div class="timeline-content">
-                                            <h5>Student Data Analyst</h5>
-                                            <p class="mb-0">LSE Data Analytics Career Accelerator | London, UK</p>
-                                            <p class="text-muted"> Completed an intensive, hands-on data analytics program from LSE, covering comprehensive aspects of business data analytics - from foundational SQL, Excel to advanced predictive modeling with Python</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Timeline Item 2 -->
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot"></div>
-                                        <div class="timeline-date">Aug 2023 - Mar 2024</div>
-                                        <div class="timeline-content">
-                                            <h5>Contract Test Manager / Business Analyst</h5>
-                                            <p class="mb-0">Citibank | London, UK</p>
-                                            <p class="text-muted">Test Manager / Business Analyst for Citibank's Global Finance Division, orchestrating cross-functional collaboration to implement a new Data Operating Model transformation effort across Capital Markets and Financial Services products</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Timeline Item 3 -->
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot"></div>
-                                        <div class="timeline-date">Nov 2022 - Aug 2023</div>
-                                        <div class="timeline-content">
-                                            <h5>Career Break (Full Time Parenting)</h5>
-                                            <p class="mb-0">Norwich, UK</p>
-                                            <p class="text-muted">Focused on family responsibilities during relocation to the UK.</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Timeline Item 4 -->
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot"></div>
-                                        <div class="timeline-date">Mar 2021 - Oct 2022</div>
-                                        <div class="timeline-content">
-                                            <h5>Business Analyst / UAT Test Lead</h5>
-                                            <p class="mb-0">EY GDS - Morgan Stanley | Chennai, India</p>
-                                            <p class="text-muted">Led user acceptance testing and business analysis for Morgan Stanley's Robo-advisory application, specializing validations of Monte-Carlo simulation results.</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Timeline Item 5 -->
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot"></div>
-                                        <div class="timeline-date">Feb 2012 - Feb 2021</div>
-                                        <div class="timeline-content">
-                                            <h5>Business Analyst / Test Lead</h5>
-                                            <p class="mb-0">TCS - Bank of America | Chennai, India / New Jersey, USA</p>
-                                            <p class="text-muted">Conducted business analysis and led global testing teams for BofA's Wealth Management application suite specializing in Investment Performance, Asset Allocation and Goals based advisory applications </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Education & Certifications Tab -->
-                        <div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="education-tab">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h5 class="mb-3">Education</h5>
-                                    <div class="education-card mb-3">
-                                        <div>
-                                            <p class="mb-1 fw-bold">London School of Economics</p>
-                                            <p class="mb-1">Data Analytics Career Accelerator</p>
-                                            <p class="mb-0 text-muted">2024 - 2025</p>
-                                        </div>
-                                    </div>
-                                    <div class="education-card">
-                                        <div>
-                                            <p class="mb-1 fw-bold">Anna University</p>
-                                            <p class="mb-1">Bachelors - Information Technology</p>
-                                            <p class="mb-0 text-muted">2007 - 2011</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-6">
-                                    <h5 class="mb-3">Certifications</h5>
-                                    <!--
-                                    <div class="certification-badge mb-3">
-                                        <img src="assets/img/certifications/PBI.png" alt="Certification 1">
-                                        <div>
-                                            <p class="mb-0 fw-bold">Microsoft Power BI Data Analyst Professional</p>
-                                            <small>Microsoft</small>
-                                        </div>
-                                    </div>
-                                    -->
-                                    <div class="certification-badge mb-3">
-                                        <img src="assets/img/certifications/BIDA.png" alt="Certification 2">
-                                        <div>
-                                            <p class="mb-0 fw-bold">Business Intelligence & Data Analyst (BIDA)</p>
-                                            <small>Corporate Finance Institute</small>
-                                        </div>
-                                    </div>
-                                    <div class="certification-badge">
-                                        <img src="assets/img/certifications/psmi.png" alt="Certification 3">
-                                        <div>
-                                            <p class="mb-0 fw-bold">Professional Scrum Master I</p>
-                                            <small>Scrum.org</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-        <div class="section-peek text-center mt-3">
+        <div class="section-peek text-center mt-4">
             <div class="section-peek-line"></div>
         </div>
     </section>
 
     <!-- Featured Projects Section -->
-    <section id="projects" class="py-4 bg-light">
+    <section id="projects" class="py-5 bg-light">
         <div class="container">
             <h2 class="section-title text-center">Featured Projects</h2>
             
@@ -640,7 +542,7 @@
                                 <span class="tech-tag">NLP</span>
                             </div>
                             <div class="divider"></div>
-                            <a href="turtle_games_project.html" class="btn btn-sm btn-outline-primary w-100">Explore Project</a>
+                            <a href="turtle_games_project.html" class="btn btn-outline-primary w-100">Explore Project</a>
                         </div>
                     </div>
                 </div>
@@ -675,7 +577,7 @@
                                 <span class="tech-tag">Data Visualization</span>
                             </div>
                             <div class="divider"></div>
-                            <a href="nhs_project.html" class="btn btn-sm btn-outline-primary w-100">Explore Project</a>
+                            <a href="nhs_project.html" class="btn btn-outline-primary w-100">Explore Project</a>
                         </div>
                     </div>
                 </div>
@@ -710,184 +612,298 @@
                                 <span class="tech-tag">Market Research</span>
                             </div>
                             <div class="divider"></div>
-                            <a href="2Market_project.html" class="btn btn-sm btn-outline-primary w-100">Explore Project</a>
+                            <a href="2Market_project.html" class="btn btn-outline-primary w-100">Explore Project</a>
                         </div>
                     </div>
                 </div>
 
+                <!-- Vantage Project -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card project-card shadow-sm">
+                        <div class="project-image project-color-4">
+                            <div class="logo-container">
+                                <div class="lse-badge">
+                                    <img src="assets/img/logos/lse-logo.png" alt="LSE Logo">
+                                </div>
+                                <div class="company-badge">
+                                    <img src="assets/img/logos/Vantage-logo.png" alt="Vantage Logo">
+                                </div>
+                            </div>
+                            <div class="project-overlay">
+                                <h4>Vantage Data</h4>
+                                <p class="mb-0">Quantitative Financial Analytics</p>
+                                <div class="project-stats">
+                                    <span>6 Weeks</span>
+                                    <span>80% (Distinction)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p>Analysis of market behavior around earnings announcements - trading strategy definition based on signal analysis.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Financial APIs</span>
+                                <span class="tech-tag">FinBERT</span>
+                                <span class="tech-tag">Quant Research</span>
+                            </div>
+                            <div class="divider"></div>
+                            <a href="vantage_project.html" class="btn btn-outline-primary w-100">Explore Project</a>
+                        </div>
+                    </div>
+                </div>
 
- <!-- Vantage Project -->
-    <div class="col-lg-4 col-md-6">
-      <div class="card project-card shadow-sm">
-        <div class="project-image project-color-4">
-            <div class="logo-container">
-                <div class="lse-badge">
-                    <img src="assets/img/logos/lse-logo.png" alt="LSE Logo">
-                </div>
-                <div class="company-badge">
-                    <img src="assets/img/logos/Vantage-logo.png" alt="Vantage Logo">
-                </div>
-            </div>
-            <div class="project-overlay">
-                <h4>Vantage Data</h4>
-                <p class="mb-0">Quantitative Financial Analytics</p>
-                <div class="project-stats">
-                    <span>6 Weeks</span>
-                    <span>80% (Distinction)</span>
+                <!-- Placeholder for future projects -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card project-card shadow-sm">
+                        <div class="project-image project-color-5">
+                            <div class="project-overlay">
+                                <h4>Personal Projects</h4>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                            <div class="mb-3">
+                                <i class="fas fa-code fa-2x text-muted"></i>
+                            </div>
+                            <p>More projects are in the pipeline and will be added soon.</p>
+                            <div class="divider w-100"></div>
+                            <a href="#" class="btn btn-outline-secondary w-100 disabled">Stay Tuned</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <p>Analysis of market behavior around earnings announcements - trading strategy definition based on signal analysis.</p>
-            <div class="tech-tags">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Financial APIs</span>
-                <span class="tech-tag">FinBERT</span>
-                <span class="tech-tag">Quant Research</span>
-            </div>
-            <div class="divider"></div>
-            <a href="vantage_project.html" class="btn btn-sm btn-outline-primary w-100">Explore Project</a>
+        <div class="section-peek text-center mt-3">
+            <div class="section-peek-line"></div>
         </div>
-      </div>
-    </div>
+    </section>
 
-<!-- Placeholder for future projects -->
-<div class="col-lg-4 col-md-6">
-    <div class="card project-card shadow-sm">
-        <div class="project-image project-color-5">
-            <div class="project-overlay">
-                <h4>Personal Projects</h4>
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="section-title">Technical Toolkit</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                <div class="card skills-card h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="skills-icon">
+                                <i class="fas fa-database text-primary"></i>
+                            </div>
+                            <h5 class="card-title mb-0">Data Analysis</h5>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Statistical Analysis</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>ML Modeling</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Data Pipeline</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>NLP</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
-            <div class="mb-3">
-                <i class="fas fa-code fa-2x text-muted"></i>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card skills-card h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="skills-icon">
+                                <i class="fas fa-chart-pie text-info"></i>
+                            </div>
+                            <h5 class="card-title mb-0">Visualization</h5>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Power BI</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Tableau</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Excel Advanced</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Python</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <p>More projects are in the pipeline and will be added soon.</p>
-            <div class="divider w-100"></div>
-            <a href="#" class="btn btn-sm btn-outline-secondary w-100 disabled">Stay Tuned</a>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card skills-card h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="skills-icon">
+                                <i class="fas fa-code text-success"></i>
+                            </div>
+                            <h5 class="card-title mb-0">Programming</h5>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>SQL</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Python</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>R (tidyverse, ggplot2)</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>DAX</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card skills-card h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="skills-icon">
+                                <i class="fas fa-lightbulb text-warning"></i>
+                            </div>
+                            <h5 class="card-title mb-0">Domain Expertise</h5>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Investment Banking</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Customer Analysis</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Marketing Analytics</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Data Storytelling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-<div class="section-peek text-center mt-3">
-<div class="section-peek-line"></div>
-</div>
 </section>
 
-<!-- Skills Section -->
-<section id="skills" class="py-4 bg-white">
-<div class="container">
-<h2 class="section-title">Tools & Techniques</h2>
-<div class="row g-4">
-<div class="col-lg-3 col-md-6">
-    <div class="card skills-card h-100">
-        <div class="card-body p-4">
-            <div class="d-flex align-items-center mb-3">
-                <div class="skills-icon">
-                    <i class="fas fa-database text-primary"></i>
-                </div>
-                <h5 class="card-title mb-0">Data Analysis</h5>
-            </div>
-            <ul class="list-unstyled">
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Statistical Analysis</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>ML Modeling</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Data Pipeline</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>NLP</li>
-            </ul>
+<!-- Contact Section -->
+<section id="contact" class="py-4 bg-light">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        
+        <!-- Single line text -->
+        <p class="mb-3">Interested in collaborating or have questions about my work? I'm always open to discussing new projects and opportunities.</p>
+        
+        <!-- Buttons and social icons row -->
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-2">
+            <!-- Action buttons -->
+            <a href="assets/docs/Sujith_Kumaar_CV.pdf" class="btn btn-primary me-2 mb-2 action-btn" target="_blank">
+                <i class="fas fa-file-pdf me-1"></i> Get My CV
+            </a>
+            <a href="mailto:sujithkumaar.kc@gmail.com" class="btn custom-contact-btn me-2 mb-2 action-btn">
+                <i class="fas fa-envelope me-1"></i> Email Me
+            </a>
+            
+            <!-- Social icons styled as buttons -->
+            <a href="https://linkedin.com/in/sujith-kumaar-kc" class="btn btn-outline-primary social-btn mb-2" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/Sujith-DA279" class="btn btn-outline-dark social-btn mb-2" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="btn btn-outline-primary social-btn mb-2" target="_blank">
+                <i class="fas fa-chart-line"></i>
+            </a>
         </div>
     </div>
-</div>
-
-<div class="col-lg-3 col-md-6">
-    <div class="card skills-card h-100">
-        <div class="card-body p-4">
-            <div class="d-flex align-items-center mb-3">
-                <div class="skills-icon">
-                    <i class="fas fa-chart-pie text-info"></i>
-                </div>
-                <h5 class="card-title mb-0">Visualization</h5>
-            </div>
-            <ul class="list-unstyled">
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Power BI</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Tableau</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Excel Advanced</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Python</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="col-lg-3 col-md-6">
-    <div class="card skills-card h-100">
-        <div class="card-body p-4">
-            <div class="d-flex align-items-center mb-3">
-                <div class="skills-icon">
-                    <i class="fas fa-code text-success"></i>
-                </div>
-                <h5 class="card-title mb-0">Programming</h5>
-            </div>
-            <ul class="list-unstyled">
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>SQL</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Python</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>R (tidyverse, ggplot2)</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>DAX</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="col-lg-3 col-md-6">
-    <div class="card skills-card h-100">
-        <div class="card-body p-4">
-            <div class="d-flex align-items-center mb-3">
-                <div class="skills-icon">
-                    <i class="fas fa-lightbulb text-warning"></i>
-                </div>
-                <h5 class="card-title mb-0">Domain Expertise</h5>
-            </div>
-            <ul class="list-unstyled">
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Investment Banking</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Customer Analysis</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Marketing Analytics</li>
-                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Data Storytelling</li>
-            </ul>
-        </div>
-    </div>
-</div>
-</div>
-</div>
 </section>
+       
 
 <!-- Footer -->
 <footer class="footer">
-<div class="container">
-<div class="row g-4">
-<div class="col-lg-6 text-center text-lg-start">
-    <h5 class="mb-3">Sujith Kumaar</h5>
-    <p class="mb-1">Analysing Data | Igniting Decisions</p>
-    <p class="small opacity-75">© 2025 Sujith Kumaar | All Rights Reserved</p>
-</div>
-<div class="col-lg-6 text-center text-lg-end">
-    <div class="mb-3">
-        <a href="https://github.com/Sujith-DA279" class="text-white mx-2" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white mx-2" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white mx-2" target="_blank"><i class="fas fa-chart-line"></i></a>
-        <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white mx-2"><i class="fas fa-envelope"></i></a>
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h5 class="mb-3">Sujith Kumaar</h5>
+                <p class="mb-1">Analysing Data | Igniting Decisions</p>
+                <p class="small opacity-75">© 2025 Sujith Kumaar | All Rights Reserved</p>
+            </div>
+            <div class="col-lg-6 text-center text-lg-end">
+                <div class="mb-3">
+                    <a href="https://github.com/Sujith-DA279" class="text-white mx-2" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/sujith-kumaar-kc" class="text-white mx-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://public.tableau.com/app/profile/sujith.kumaar.k.c" class="text-white mx-2" target="_blank"><i class="fas fa-chart-line"></i></a>
+                    <a href="mailto:sujithkumaar.kc@gmail.com" class="text-white mx-2"><i class="fas fa-envelope"></i></a>
+                </div>
+                <p class="small opacity-75">Made with <i class="fas fa-heart text-danger"></i> using GitHub Pages</p>
+            </div>
+        </div>
     </div>
-    <p class="small opacity-75">Made with <i class="fas fa-heart text-danger"></i> using GitHub Pages</p>
-</div>
-</div>
-</div>
 </footer>
 
 <!-- Back to top button -->
 <a href="#" class="back-to-top">
-<i class="fas fa-arrow-up"></i>
+    <i class="fas fa-arrow-up"></i>
 </a>
+
+<!-- Certification Modals -->
+<!-- BIDA Certification Modal -->
+<div class="modal fade" id="bidaModal" tabindex="-1" aria-labelledby="bidaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bidaModalLabel">Business Intelligence & Data Analyst (BIDA) Certification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <iframe src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/101074244" 
+                        width="100%" height="500px" frameborder="0" allowfullscreen></iframe>
+                <div class="mt-4 px-4 text-start">
+                    <p>This certification demonstrates completion of CFI's Business Intelligence and Data Analysis® program. To achieve this certification, participants must complete 14 core courses and 3 elective courses on topics of business intelligence and data science. In total, this represents over 100 hours of coursework. In addition, learners pass a timed exam that incorporates realistic scenarios and data sets. Through the coursework and exams, learners apply tools like Power BI, Power Pivot, Power Query, Python, Excel, Tableau, and Azure Data Studio. All courses within this program incorporate hands-on scenario-based learning with examples taken from finance industry verticals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LSE Certification Modal -->
+<div class="modal fade" id="lseModal" tabindex="-1" aria-labelledby="lseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lseModalLabel">LSE Data Analytics Career Accelerator</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="assets/img/logos/lse-logo.png" alt="LSE Certification" class="img-fluid mb-4" style="max-height: 150px;">
+                <div class="px-4 text-start">
+                    <p>Completed the LSE Data Analytics Career Accelerator program, an intensive, hands-on data analytics program from London School of Economics, covering comprehensive aspects of business data analytics - from foundational SQL, Excel to advanced predictive modeling with Python.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PSM Certification Modal -->
+<div class="modal fade" id="psmModal" tabindex="-1" aria-labelledby="psmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="psmModalLabel">Professional Scrum Master I Certification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <a href="https://www.credly.com/badges/33928944-c082-4cbc-8eb4-ec675c6f38f1" target="_blank">
+                    <img src="assets/img/certifications/psm_badge.png" 
+                         alt="Professional Scrum Master I" class="img-fluid mb-3" style="max-width: 200px;">
+                  </a>
+                  <p>View my PSM I certification on Credly</p>
+                </div>
+                <div class="mt-4 px-4 text-start">
+                       <p>PSM I is recognized by the industry as a certification that demonstrates a fundamental level of Scrum mastery. As a PSM I certification holder, you have proven that you understand Scrum as described in the Scrum Guide and how to apply Scrum in Scrum Teams. PSM I holders have a consistent terminology and approach to Scrum.</p>
+                </div>        
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom Script for Smooth Scrolling -->
+<script>
+    // Back to top button functionality
+    document.addEventListener("DOMContentLoaded", function() {
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'flex';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+    });
+</script>
 </body>
 </html>
